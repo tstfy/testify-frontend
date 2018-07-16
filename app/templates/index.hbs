@@ -1,61 +1,45 @@
-<div class="container is-fullhd">
-  <div class="body">
-    <figure class="image">
-      <img src="/images/logo_reverse.png">
-    </figure>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-              <div class="tile">
-                <div class="tile is-parent is-vertical">
-                  <article class="tile is-child notification is-primary">
-                    <p class="title">Vertical...</p>
-                    <p class="subtitle">Top tile</p>
-                  </article>
-                  <article class="tile is-child notification is-warning">
-                    <p class="title">...tiles</p>
-                    <p class="subtitle">Bottom tile</p>
-                  </article>
-                </div>
-                <div class="tile is-parent">
-                  <article class="tile is-child notification is-info">
-                    <p class="title">Middle tile</p>
-                    <p class="subtitle">With an image</p>
-                    <figure class="image is-4by3">
-                      <img src="https://bulma.io/images/placeholders/640x480.png">
-                    </figure>
-                  </article>
-                </div>
-              </div>
-              <div class="tile is-parent">
-                <article class="tile is-child notification is-danger">
-                  <p class="title">Wide tile</p>
-                  <p class="subtitle">Aligned with the right tile</p>
-                  <div class="content">
-                    <!-- Content -->
-                  </div>
-                </article>
-              </div>
-            </div>
-            <div class="tile is-parent">
-              <article class="tile is-child notification is-link">
-                <div class="content">
-                  <p class="title">Tall tile</p>
-                  <p class="subtitle">With even more content</p>
-                  <div class="content">
-                    <!-- Content -->
-                  </div>
-                </div>
-              </article>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.7.1-->
+</head>
+
+<body>
+    <section class="hero is-primary is-fullheight" style="background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url('https://unsplash.it/1200/900?random') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+        <div class="hero-head">
+          <div class="container has-text-centered">
+            <img src="/images/logo_reverse.png" style="filter: invert(1);" />
           </div>
         </div>
-      </div>
+                <div class="container has-text-centered">
+                    <div class="column is-6 is-offset-3">
+                        <h2 class="subtitle">
+                            This is the best software platform for hosting technical software interviews.
+                            We handle and faciliate all steps of the interview process and help manage your candidates.
+                        </h2>
+                        <div class="box">
+                            <div class="field is-grouped">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="Enter your email">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-info">
+                                        Notify Me
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
     </section>
-    <div class="container section">
-      <a class="button is-fullwidth is-large is-success">Get Started!</a>
-    </div>
-  </div>
-</div>
+</body>
