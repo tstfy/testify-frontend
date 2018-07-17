@@ -17,6 +17,7 @@ module.exports = function(environment) {
       }
     },
     torii: {
+      allowUnsafeRedirects: true,
       sessionServiceName: "session",
       providers: {
         "github-oauth2": {

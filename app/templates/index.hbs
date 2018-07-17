@@ -20,6 +20,7 @@
           <div class="container has-text-centered">
             <img src="/images/logo_reverse.png" style="filter: invert(1);" />
           </div>
+          <!-- login modal -->
           <div class="modal {{if isActive "is-active"}}">
             <div class="modal-background"></div>
             <div class="modal-card">
@@ -30,11 +31,15 @@
               <section class="modal-card-body">
                 <div class="hero-body">
                     <div class="container has-text-centered">
-                      <a {{action 'checkLoginAuth'}} class="button is-large">
+                      <a onclick={{action "login"}} class="button is-large">
                         <span class="icon">
                           <i class="fa fa-github fa-lg"></i>
                         </span>
-                        <span>Login with GitHub</span>
+                        {{#if session.isAuthenticated}}
+                          <span>Let's Go!</span>
+                        {{else}}
+                          <span>Login with GitHub</span>
+                        {{/if}}
                       </a>
                       <p class="has-text-grey">
                         <a href="/support">Need Help?</a>
@@ -44,6 +49,7 @@
               </section>
             </div>
           </div>
+          <!-- login modal -->
           <a {{action 'toggleModal'}} class="button is-warning" style="
           margin-top: 20px;
           margin-right: 20px;

@@ -1,15 +1,17 @@
 import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
 
 export default Controller.extend({
   isActive: false,
-  isLoggedIn: false,
+  session: service(),
   actions: {
     toggleModal() {
       this.toggleProperty("isActive");
     },
-    checkLoginAuth() {
-      this.toggleProperty("isLoggedIn");
-      this.transitionTo("about");
+    login() {
+      if (!this.get("session").isAuthenticated)
+        this.get("session").authenticate("authenticator:torii", "github");
+      if (this.get("session").isAuthenticated) this.transitionToRoute("home");
     }
   }
 });
