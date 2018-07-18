@@ -35,6 +35,9 @@ module.exports = function(environment) {
     ENV.torii.providers["github-oauth2"].apiKey =
       process.env.GITHUB_DEV_CLIENT_ID;
     ENV.torii.providers["github-oauth2"].redirectUri = "http://localhost:4200";
+    ENV.torii.providers["github-oauth2"].tokenExchangeUri =
+      process.env.DEV_TOKEN_EXCHANGE_URL;
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

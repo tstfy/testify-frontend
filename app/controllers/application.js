@@ -1,7 +1,8 @@
 import Controller from "@ember/controller";
 import config from "../config/environment";
+import { inject as service } from "@ember/service";
 
 export default Controller.extend({
-  session: Ember.inject.service(),
+  session: service(),
   config: config.torii.providers["github-oauth2"]
 });

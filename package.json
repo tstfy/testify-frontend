@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@ember-decorators/babel-transforms": "^2.0.1",
+    "body-parser": "^1.18.3",
     "broccoli-asset-rev": "^2.7.0",
     "bulma": "^0.5.3",
     "ember-ajax": "^3.0.0",
@@ -37,6 +38,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "~3.2.0",
+    "ember-data-github": "^0.8.0",
     "ember-export-application-global": "^2.0.0",
     "ember-font-awesome": "^4.0.0-rc.4",
     "ember-load-initializers": "^1.1.0",
@@ -45,7 +47,10 @@
     "ember-simple-auth": "^1.6.0",
     "ember-source": "~3.2.0",
     "eslint-plugin-ember": "^5.0.0",
+    "express": "^4.16.3",
+    "glob": "^7.1.2",
     "loader.js": "^4.2.3",
+    "morgan": "^1.9.0",
     "qunit-dom": "^0.6.2",
     "torii": "^0.10.1"
   },
