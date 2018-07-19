@@ -1,0 +1,26 @@
+.completed {
+    background-color: #99ff99;
+}
+.table tr.completed:hover {
+	background-color: #80ff80;
+}
+
+.failed {
+	background-color: #ff9999;
+}
+
+.table tr.failed:hover {
+	background-color: #ff8080;
+}
+
+.in-progress{
+    background-color: #ffff99;
+}
+
+.table tr.in-progress:hover {
+	background-color: #ffff80;
+}
+
+.table.is-centered td {
+	vertical-align: middle;
+}
