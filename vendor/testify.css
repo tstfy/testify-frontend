@@ -24,3 +24,25 @@
 .table.is-centered td {
 	vertical-align: middle;
 }
+
+/* Login page css*/
+form#login-form {
+	padding-top: 10%;
+	padding-bottom: 5%;
+}
+
+#linkedin-login {
+	color: #0077b5;
+}
+
+#google-login {
+	color: #dd4b39;
+}
+
+#github-login {
+	color: #333;
+}
+
+#facebook-login {
+	color: #3b5998;
+}

@@ -24,9 +24,16 @@ $input-shadow: none;
 $body-background-color: $accent1;
 $hr-background-color: $foreground;
 
+//Input colors
+$input-background-color: #ffffff;
+$input-border-color: #d9d9d9;
+
+//Icon size
+$icon-dimensions-medium: 2.5rem;
+
 // Colors
 // $primary: #650360;
-// $info: #00a4d9;
+$info: #1ad1ff;
 // $success: #5eadb2;
 // $warning: #fce473;
 // $danger: #ed6c63;
