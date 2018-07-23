@@ -50,13 +50,23 @@
             </div>
           </div>
           <!-- login modal -->
-          <a {{action 'toggleModal'}} class="button is-warning" style="
+          <!-- <a {{action 'toggleModal'}} class="button is-warning" style="
           margin-top: 20px;
           margin-right: 20px;
           position:absolute;
           top:0;
           right:0;">
             Demo
+          </a> -->
+          <a class="button is-warning" style="
+          margin-top: 20px;
+          margin-right: 20px;
+          position:absolute;
+          top:0;
+          right:0;">
+            {{#link-to 'home'}}
+              Demo
+            {{/link-to}}
           </a>
         </div>
         <div class="container has-text-centered">

@@ -1,4 +1,5 @@
 <section class="hero is-dark is-fullheight">
+  {{nav-bar}}
   <div class="hero-body">
     <div class="container has-text-centered">
       <div class="column is-4 is-offset-4">
@@ -47,7 +48,7 @@
 				</a>
 			</span>
 			<span class="icon is-medium">
-				<a id="github-login" href="#" class="fa-stack fa-md">
+				<a onclick={{action "login"}} id="github-login" href="#" class="fa-stack fa-md">
 					{{#fa-stack size="lg" as |s|}}
 						{{s.stack-2x "circle"}}
 						{{s.stack-1x "github" inverse=true}}
