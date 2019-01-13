@@ -37,7 +37,7 @@
           <a class="navbar-item" href="/profile">
             Settings
           </a>
-          <a {{action 'toggleModal'}} class="navbar-item">
+          <a {{action 'toggleNewChallenge'}} class="navbar-item">
             Logout
           </a>
         </div>
@@ -56,10 +56,70 @@
       </div>
     </div> -->
   </div>
+  {{#if session.isAuthenticated}}
+	<div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="button is-success" {{action 'toggleNewChallenge'}}>
+              <span>New Challenge</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  {{/if}}
 </nav>
 <!-- logout modal -->
 <div class="modal {{if showModal "is-active"}}">
   <div class="modal-background"></div>
+  {{#if showNewChallenge}}
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create Challenge</p>
+      <button class="delete" aria-label="close" {{action "toggleNewChallenge"}}></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+	    <label class="label">Title <span class="has-text-danger">*</span></label>
+	    <div class="control">
+		  <input class="input" type="text" placeholder="Challenge title" required>
+	    </div>
+	  </div>
+	  <div class="field">
+	    <label class="label">Description</label>
+	    <div class="control">
+		  <textarea class="textarea" placeholder="Challenge description"></textarea>
+	    </div>
+	  </div>
+	  <div class="field">
+	    <label class="label">Type of Challenge</label>
+	    <div class="control">
+		  <input class="input" type="text" placeholder="Challenge type">
+	    </div>
+	  </div>
+	  <!-- Using generic datepicker, no css implemented yet -->
+	  <div class="field-body">
+	    <div class="field">
+	    <label class="label">Start Date</label>
+	    <div class="control">
+		  <input class="input" type="date" placeholder="Start date">
+	    </div>
+		</div>
+		<div class="field">
+	    <label class="label">End Date</label>
+	    <div class="control">
+		  <input class="input" type="date" placeholder="End date">
+	    </div>
+		</div>
+	  </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" {{action "saveChallenge"}} type="submit">Save</button>
+      <button class="button" {{action "toggleNewChallenge"}}>Cancel</button>
+    </footer>
+  </div>
+  {{else}}
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Want to logout?</p>
@@ -77,5 +137,6 @@
       </a>
     </header>
   </div>
+  {{/if}}
 </div>
 <!-- logout modal -->

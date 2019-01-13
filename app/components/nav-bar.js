@@ -12,6 +12,13 @@ export default Component.extend({
     toggleModal() {
       this.toggleProperty("showModal");
     },
+	toggleNewChallenge() {
+      this.toggleProperty("showModal");
+	  this.toggleProperty("showNewChallenge");
+    },
+	saveChallenge() {
+      //Include POST call somewhere to save challenge
+    },
     logout() {
       this.get("session").invalidate();
     }
