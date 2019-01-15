@@ -1,0 +1,98 @@
+{{nav-bar}}
+
+<div class="container is-fluid">
+  <div class="field is-horizontal">
+  <p class="field-body">
+  <h1 class="title">CHALLENGE PAGE</h1>
+  </p>
+  <p class="field-label">
+    <a class="button is-success" {{action 'toggleUpdateChallenge'}}>
+      <span>Update</span>
+    </a>
+	</p>
+  </div>
+  {{candidate-list}}
+  <p class="control">
+    <a class="button is-success is-pulled-right" {{action 'toggleNewCandidate'}}>
+      <span>New Candidate</span>
+    </a>
+	</p>
+</div>
+<!-- modal -->
+<div class="modal {{if showModalChallenge "is-active"}}">
+  <div class="modal-background"></div>
+  {{#if showUpdateChallenge}}
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Update Challenge</p>
+      <button class="delete" aria-label="close" {{action "toggleUpdateChallenge"}}></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+	    <label class="label">Title <span class="has-text-danger">*</span></label>
+	    <div class="control">
+		  <input class="input" type="text" placeholder="Challenge title" required>
+	    </div>
+	  </div>
+	  <div class="field">
+	    <label class="label">Description</label>
+	    <div class="control">
+		  <textarea class="textarea" placeholder="Challenge description"></textarea>
+	    </div>
+	  </div>
+	  <div class="field">
+	    <label class="label">Type of Challenge</label>
+	    <div class="control">
+		  <input class="input" type="text" placeholder="Challenge type">
+	    </div>
+	  </div>
+	  <!-- Using generic datepicker, no css implemented yet -->
+	  <div class="field-body">
+	    <div class="field">
+	    <label class="label">Start Date</label>
+	    <div class="control">
+		  <input class="input" type="date" placeholder="Start date">
+	    </div>
+		</div>
+		<div class="field">
+	    <label class="label">End Date</label>
+	    <div class="control">
+		  <input class="input" type="date" placeholder="End date">
+	    </div>
+		</div>
+	  </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" {{action "updateChallenge"}} type="submit">Save</button>
+      <button class="button" {{action "toggleUpdateChallenge"}}>Cancel</button>
+    </footer>
+  </div>
+  {{/if}}
+  {{#if showNewCandidate}}
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create Candidate</p>
+      <button class="delete" aria-label="close" {{action "toggleNewCandidate"}}></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+	    <label class="label">Username <span class="has-text-danger">*</span></label>
+	    <div class="control">
+		  <input class="input" type="text" placeholder="Username" required>
+	    </div>
+	  </div>
+	  <div class="field">
+	    <label class="label">Email Address <span class="has-text-danger">*</span></label>
+	    <div class="control">
+		  <input class="input" type="email" placeholder="Email address" required>
+	    </div>
+	  </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" {{action "saveCandidate"}} type="submit">Save</button>
+      <button class="button" {{action "toggleNewCandidate"}}>Cancel</button>
+    </footer>
+  </div>
+  {{/if}}
+</div>
+<!--  modal -->

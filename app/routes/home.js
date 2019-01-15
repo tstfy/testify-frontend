@@ -6,6 +6,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return [
       {
         id: "facebook",
+		challenge_id: "1",
         title: "Facebook Coding Challenge",
         owner: "Veruca Salt",
         startData: "Tue Jul 17 2018",
@@ -19,6 +20,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       },
       {
         id: "google",
+		challenge_id: "2",
         title: "Google Coding Challenge",
         owner: "Mike TV",
         startData: "Tue Jul 17 2018",
@@ -32,6 +34,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       },
       {
         id: "amazon",
+		challenge_id: "3",
         title: "Amazon Coding Challenge",
         owner: "Violet Beauregarde",
         startData: "Tue Jul 17 2018",

@@ -13,6 +13,8 @@ Router.map(function() {
   this.route("profile");
   this.route("home");
   this.route('login');
+  //this.route('challenge', { path: '/challenge/:challenge_id' });
+  this.route('challenge', { path: '/challenge' });
 });
 
 export default Router;
