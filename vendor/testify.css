@@ -38,5 +38,6 @@ form#login-form {
 #github-login {
   color: #333;
   height: 40px;
+  cursor: pointer;
 }
 
