@@ -3,25 +3,26 @@
 <div class="container is-fluid">
   <h1 class="title">HOME PAGE</h1>
   {{candidate-list}}
-  {{#each model as |rental|}}
+  {{#each model as |challenge|}}
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-primary">
-            <p class="title"><a href="/challenge">{{rental.title}}</a></p>
-            <p class="subtitle">Owner: {{rental.owner}} </p>
+            <p class="title"><a href="/challenge/{{challenge.id}}">{{challenge.title}}</a></p>-->
+			<!--<p class="title">{{#link-to "home.challenge" challenge.id}}{{challenge.title}}{{/link-to}}</p>-->
+            <p class="subtitle">Owner: {{challenge.owner}} </p>
             <div class="detail type">
-              <span>Type:</span> {{rental.category}}
+              <span>Type:</span> {{challenge.category}}
             </div>
             <div class="detail start date">
-              <span>Start Date:</span> {{rental.startData}}
+              <span>Start Date:</span> {{challenge.startdate}}
             </div>
             <div class="detail start date">
-              <span>End Date:</span> {{rental.endDate}}
+              <span>End Date:</span> {{challenge.enddate}}
             </div>
             <div class="detail bedrooms">
-              <span>Number of candidates:</span> {{rental.candidates}}
+              <span>Number of candidates:</span> {{challenge.candidates}}
             </div>
           </article>
         </div>

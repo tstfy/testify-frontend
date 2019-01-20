@@ -3,13 +3,36 @@
 <div class="container is-fluid">
   <div class="field is-horizontal">
   <p class="field-body">
-  <h1 class="title">CHALLENGE PAGE</h1>
+  <h1 class="title">{{this.model.title}}</h1>
   </p>
   <p class="field-label">
     <a class="button is-success" {{action 'toggleUpdateChallenge'}}>
       <span>Update</span>
     </a>
 	</p>
+  </div>
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-primary">
+            <p class="subtitle">Owner: {{this.model.owner}} </p>
+            <div class="detail type">
+              <span>Type:</span> {{this.model.category}}
+            </div>
+            <div class="detail start date">
+              <span>Start Date:</span> {{this.model.startdate}}
+            </div>
+            <div class="detail start date">
+              <span>End Date:</span> {{this.model.enddate}}
+            </div>
+            <div class="detail bedrooms">
+              <span>Number of candidates:</span> {{this.model.candidates}}
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
   </div>
   {{candidate-list}}
   <p class="control">
@@ -31,19 +54,19 @@
       <div class="field">
 	    <label class="label">Title <span class="has-text-danger">*</span></label>
 	    <div class="control">
-		  <input class="input" type="text" placeholder="Challenge title" required>
+		  <input class="input" type="text" value="{{this.model.title}}" placeholder="Challenge title" required>
 	    </div>
 	  </div>
 	  <div class="field">
 	    <label class="label">Description</label>
 	    <div class="control">
-		  <textarea class="textarea" placeholder="Challenge description"></textarea>
+		  <textarea class="textarea" value="{{this.model.description}}" placeholder="Challenge description"></textarea>
 	    </div>
 	  </div>
 	  <div class="field">
 	    <label class="label">Type of Challenge</label>
 	    <div class="control">
-		  <input class="input" type="text" placeholder="Challenge type">
+		  <input class="input" type="text" value="{{this.model.category}}" placeholder="Challenge type">
 	    </div>
 	  </div>
 	  <!-- Using generic datepicker, no css implemented yet -->
@@ -51,13 +74,13 @@
 	    <div class="field">
 	    <label class="label">Start Date</label>
 	    <div class="control">
-		  <input class="input" type="date" placeholder="Start date">
+		  <input class="input" type="date" value="{{this.model.startdate}}" placeholder="Start date">
 	    </div>
 		</div>
 		<div class="field">
 	    <label class="label">End Date</label>
 	    <div class="control">
-		  <input class="input" type="date" placeholder="End date">
+		  <input class="input" type="date" value="{{this.model.enddate}}" placeholder="End date">
 	    </div>
 		</div>
 	  </div>

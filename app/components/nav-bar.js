@@ -4,6 +4,7 @@ import { inject as service } from "@ember/service";
 export default Component.extend({
   showModal: false,
   showMenu: false,
+  showNewChallenge: false,
   session: service(),
   actions: {
     toggleMenu() {
@@ -12,11 +13,11 @@ export default Component.extend({
     toggleModal() {
       this.toggleProperty("showModal");
     },
-	toggleNewChallenge() {
+    toggleNewChallenge() {
       this.toggleProperty("showModal");
-	  this.toggleProperty("showNewChallenge");
+      this.toggleProperty("showNewChallenge");
     },
-	saveChallenge() {
+    saveChallenge() {
       //Include POST call somewhere to save challenge
     },
     logout() {
