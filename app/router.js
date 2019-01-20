@@ -12,9 +12,6 @@ Router.map(function() {
   this.route("contact");
   this.route("profile");
   this.route("home");
-  /*this.route("home", function(){
-      this.route('challenge', { path: '/challenge/:challenge_id' });
-  });*/
   this.route('login');
   this.route('challenge', { path: '/challenge/:challenge_id' });
 });

@@ -25,24 +25,19 @@
 	vertical-align: middle;
 }
 
+.challenge {
+  background-color: #b3d1d8;
+}
+
 /* Login page css*/
 form#login-form {
 	padding-top: 10%;
 	padding-bottom: 5%;
 }
 
-#linkedin-login {
-	color: #0077b5;
-}
-
-#google-login {
-	color: #dd4b39;
-}
-
 #github-login {
-	color: #333;
+  color: #333;
+  height: 40px;
+  cursor: pointer;
 }
 
-#facebook-login {
-	color: #3b5998;
-}

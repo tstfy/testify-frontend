@@ -1,16 +1,13 @@
 {{nav-bar}}
 
 <div class="container is-fluid">
-  <h1 class="title">HOME PAGE</h1>
-  {{candidate-list}}
   {{#each model as |challenge|}}
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-primary">
+          <article class="tile is-child notification challenge">
             <p class="title"><a href="/challenge/{{challenge.id}}">{{challenge.title}}</a></p>-->
-			<!--<p class="title">{{#link-to "home.challenge" challenge.id}}{{challenge.title}}{{/link-to}}</p>-->
             <p class="subtitle">Owner: {{challenge.owner}} </p>
             <div class="detail type">
               <span>Type:</span> {{challenge.category}}

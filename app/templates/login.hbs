@@ -31,13 +31,13 @@
           </form>
           <div class="content">
             <p>or sign in with</p>
-            <span class="icon is-medium">
-              <a onclick={{action "login"}} id="github-login" href="#" class="fa-stack fa-md">
+            <span onclick={{action "login"}} class="icon github">
+              <i id="github-login" href="#" class="fab fa-3x fa-github">
                 {{#fa-stack size="lg" as |s|}}
                 {{s.stack-2x "circle"}}
                 {{s.stack-1x "github" inverse=true}}
                 {{/fa-stack}}
-              </a>
+              </i>
             </span>
           </div>
         </div>
