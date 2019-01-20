@@ -1,4 +1,5 @@
 export default function() {
+  this.passthrough();
   this.namespace = '/api';
 
   let challenges = [
