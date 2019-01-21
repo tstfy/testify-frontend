@@ -13,8 +13,8 @@
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint .",
-    "deploy": "npm i && ember build && ember serve",
-    "deploy-prod": "npm i && ember build --environment production && ember serve",
+    "dev": "npm i && ember build && ember serve",
+    "prod": "npm i && ember build --environment=production && ember serve -prod",
     "test": "ember test"
   },
   "devDependencies": {
