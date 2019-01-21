@@ -59,6 +59,9 @@ module.exports = function(environment) {
 
   if (environment === "production") {
     // here you can enable a production-specific feature
+    ENV["ember-cli-mirage"] = {
+      enabled: true
+    };
     ENV.torii.providers["github-oauth2"].apiKey =
       process.env.GITHUB_STAGING_CLIENT_ID;
     ENV.torii.providers["github-oauth2"].redirectUri =
