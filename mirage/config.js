@@ -1,12 +1,12 @@
 export default function() {
   this.passthrough();
-  this.namespace = '/api';
+  this.namespace = "/api";
 
   let challenges = [
     {
-        type: 'challenge',
-        id: "facebook",
-        attributes: {
+      type: "challenge",
+      id: "facebook",
+      attributes: {
         challengeid: "1",
         title: "Facebook Coding Challenge",
         owner: "Veruca Salt",
@@ -16,12 +16,12 @@ export default function() {
         candidates: 15,
         description:
           "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
-        }
-      },
-      {
-        type: 'challenge',
-        id: "google",
-        attributes: {
+      }
+    },
+    {
+      type: "challenge",
+      id: "google",
+      attributes: {
         challengeid: "2",
         title: "Google Coding Challenge",
         owner: "Mike TV",
@@ -31,12 +31,12 @@ export default function() {
         candidates: 10,
         description:
           "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
-        }
-      },
-      {
-        type: 'challenge',
-        id: "amazon",
-        attributes: {
+      }
+    },
+    {
+      type: "challenge",
+      id: "amazon",
+      attributes: {
         challengeid: "3",
         title: "Amazon Coding Challenge",
         owner: "Violet Beauregarde",
@@ -46,17 +46,19 @@ export default function() {
         candidates: 30,
         description:
           "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
-        }
       }
+    }
   ];
 
-  this.get('/challenges', function(db, request) {
-      return { data: challenges };
+  this.get("/challenges", function(db, request) {
+    console.log(db, request);
+    return { data: challenges };
   });
 
-  this.get('/challenges/:id', function (db, request) {
-    return { data: challenges.find((challenge) => request.params.id === challenge.id) };
+  this.get("/challenges/:id", function(db, request) {
+    console.log(db, request);
+    return {
+      data: challenges.find(challenge => request.params.id === challenge.id)
+    };
   });
-  
-  
 }

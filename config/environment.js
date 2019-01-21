@@ -38,12 +38,11 @@ module.exports = function(environment) {
       "http://localhost:4200/home";
     ENV.torii.providers["github-oauth2"].tokenExchangeUri =
       process.env.DEV_TOKEN_EXCHANGE_URL;
-
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === "test") {
@@ -60,6 +59,12 @@ module.exports = function(environment) {
 
   if (environment === "production") {
     // here you can enable a production-specific feature
+    ENV.torii.providers["github-oauth2"].apiKey =
+      process.env.GITHUB_STAGING_CLIENT_ID;
+    ENV.torii.providers["github-oauth2"].redirectUri =
+      process.env.STAGING_REDIRECT_URL;
+    ENV.torii.providers["github-oauth2"].tokenExchangeUri =
+      process.env.STAGING_TOKEN_EXCHANGE_URL;
   }
 
   return ENV;
