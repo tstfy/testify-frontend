@@ -1,38 +1,44 @@
 .completed {
-    background-color: #99ff99;
+  background-color: #99ff99;
 }
 .table tr.completed:hover {
-	background-color: #80ff80;
+  background-color: #80ff80;
 }
 
 .failed {
-	background-color: #ff9999;
+  background-color: #ff9999;
 }
 
 .table tr.failed:hover {
-	background-color: #ff8080;
+  background-color: #ff8080;
 }
 
-.in-progress{
-    background-color: #ffff99;
+.in-progress {
+  background-color: #ffff99;
 }
 
 .table tr.in-progress:hover {
-	background-color: #ffff80;
+  background-color: #ffff80;
 }
 
 .table.is-centered td {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .challenge {
   background-color: #b3d1d8;
 }
 
+.create {
+  background-color: #00d1b2 !important;
+  color: #ffffff !important;
+  border-radius: 290486px !important;
+}
+
 /* Login page css*/
 form#login-form {
-	padding-top: 10%;
-	padding-bottom: 5%;
+  padding-top: 10%;
+  padding-bottom: 5%;
 }
 
 #github-login {
@@ -40,4 +46,3 @@ form#login-form {
   height: 40px;
   cursor: pointer;
 }
-

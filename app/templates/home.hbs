@@ -1,12 +1,12 @@
 {{nav-bar}}
 
-<div class="container is-fluid">
+<div class="container is-fluid" style="margin-top: 20px;">
   {{#each model as |challenge|}}
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-primary">
+          <article class="tile is-child notification is-primary" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
             <p class="title"><a href="/challenge/{{challenge.id}}">{{challenge.title}}</a></p>-->
             <p class="subtitle">Owner: {{challenge.owner}} </p>
             <div class="detail type">

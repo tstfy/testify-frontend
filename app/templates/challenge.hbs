@@ -1,21 +1,21 @@
 {{nav-bar}}
 
-<div class="container is-fluid">
+<div class="container is-fluid" style="margin-top: 20px;">
   <div class="field is-horizontal">
-  <p class="field-body">
-  <h1 class="title">{{this.model.title}}</h1>
-  </p>
-  <p class="field-label">
-    <a class="button is-success" {{action 'toggleUpdateChallenge'}}>
-      <span>Update</span>
-    </a>
-	</p>
+    <p class="field-body">
+      <h1 class="title">{{this.model.title}}</h1>
+    </p>
+    <p class="field-label">
+      <a class="button create" {{action 'toggleUpdateChallenge'}}>
+        <span>Update</span>
+      </a>
+    </p>
   </div>
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-4">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-primary">
+          <article class="tile is-child notification is-primary" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
             <p class="subtitle">Owner: {{this.model.owner}} </p>
             <div class="detail type">
               <span>Type:</span> {{this.model.category}}
@@ -29,6 +29,9 @@
             <div class="detail bedrooms">
               <span>Number of candidates:</span> {{this.model.candidates}}
             </div>
+            <div class="detail bedrooms">
+              <span>Source Git Repo:</span> {{this.model.gitlink}}
+            </div>
           </article>
         </div>
       </div>
@@ -36,10 +39,10 @@
   </div>
   {{candidate-list}}
   <p class="control">
-    <a class="button is-success is-pulled-right" {{action 'toggleNewCandidate'}}>
+    <a class="button create is-pulled-right" {{action 'toggleNewCandidate'}}>
       <span>New Candidate</span>
     </a>
-	</p>
+  </p>
 </div>
 <!-- modal -->
 <div class="modal {{if showModalChallenge "is-active"}}">
@@ -52,38 +55,38 @@
     </header>
     <section class="modal-card-body">
       <div class="field">
-	    <label class="label">Title <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="text" value="{{this.model.title}}" placeholder="Challenge title" required>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <label class="label">Description</label>
-	    <div class="control">
-		  <textarea class="textarea" value="{{this.model.description}}" placeholder="Challenge description"></textarea>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <label class="label">Type of Challenge</label>
-	    <div class="control">
-		  <input class="input" type="text" value="{{this.model.category}}" placeholder="Challenge type">
-	    </div>
-	  </div>
-	  <!-- Using generic datepicker, no css implemented yet -->
-	  <div class="field-body">
-	    <div class="field">
-	    <label class="label">Start Date</label>
-	    <div class="control">
-		  <input class="input" type="date" value="{{this.model.startdate}}" placeholder="Start date">
-	    </div>
-		</div>
-		<div class="field">
-	    <label class="label">End Date</label>
-	    <div class="control">
-		  <input class="input" type="date" value="{{this.model.enddate}}" placeholder="End date">
-	    </div>
-		</div>
-	  </div>
+        <label class="label">Title <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="text" value="{{this.model.title}}" placeholder="Challenge title" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <textarea class="textarea" value="{{this.model.description}}" placeholder="Challenge description"></textarea>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Type of Challenge</label>
+        <div class="control">
+          <input class="input" type="text" value="{{this.model.category}}" placeholder="Challenge type">
+        </div>
+      </div>
+      <!-- Using generic datepicker, no css implemented yet -->
+      <div class="field-body">
+        <div class="field">
+          <label class="label">Start Date</label>
+          <div class="control">
+            <input class="input" type="date" value="{{this.model.startdate}}" placeholder="Start date">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">End Date</label>
+          <div class="control">
+            <input class="input" type="date" value="{{this.model.enddate}}" placeholder="End date">
+          </div>
+        </div>
+      </div>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" {{action "updateChallenge"}} type="submit">Save</button>
@@ -99,20 +102,20 @@
     </header>
     <section class="modal-card-body">
       <div class="field">
-	    <label class="label">Username <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="text" placeholder="Username" required>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <label class="label">Email Address <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="email" placeholder="Email address" required>
-	    </div>
-	  </div>
+        <label class="label">Username <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Username" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Email Address <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="email" placeholder="Email address" required>
+        </div>
+      </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success" {{action "saveCandidate"}} type="submit">Save</button>
+      <button class="button create" {{action "saveCandidate"}} type="submit">Save</button>
       <button class="button" {{action "toggleNewCandidate"}}>Cancel</button>
     </footer>
   </div>
