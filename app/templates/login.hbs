@@ -21,12 +21,12 @@
                 <input class="input is-large" type="password" placeholder="Password">
               </div>
             </div>
-            <div class="field">
+            {{!-- <div class="field">
               <label class="checkbox">
                 <input type="checkbox">
                 Remember me
               </label>
-            </div>
+            </div> --}}
             <button class="button is-block is-info is-large is-fullwidth">Login</button>
           </form>
           <div class="content">
@@ -42,9 +42,10 @@
           </div>
         </div>
         <p>
-          <a onclick={{action "toggleSignUp"}}>Sign Up</a> &nbsp;·&nbsp;
-          <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-          <a href="../">Need Help?</a>
+          <a onclick={{action "toggleSignUp"}}>Sign Up</a>
+          {{!-- &nbsp;·&nbsp; --}}
+          {{!-- <a href="../">Forgot Password</a> &nbsp;·&nbsp;
+          <a href="../">Need Help?</a> --}}
         </p>
       </div>
     </div>
@@ -59,25 +60,25 @@
       <button class="delete" aria-label="close" {{action "toggleSignUp"}}></button>
     </header>
     <section class="modal-card-body">
-	  <div class="field">
-	    <label class="label">Email Address <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="email" placeholder="Email address" required>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <label class="label">Password <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required>
-	    </div>
-		<label class="label"><span class="has-text-danger is-size-7">6 or more characters</span></label>
-	  </div>
-	  <div class="field">
-	    <label class="label">Confirm Password <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required>
-	    </div>
-	  </div>
+      <div class="field">
+        <label class="label">Email Address <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="email" placeholder="Email address" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required>
+        </div>
+        <label class="label"><span class="has-text-danger is-size-7">6 or more characters</span></label>
+      </div>
+      <div class="field">
+        <label class="label">Confirm Password <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required>
+        </div>
+      </div>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" {{action "createUser"}} type="submit">Save</button>
