@@ -29,6 +29,7 @@ export default Controller.extend({
         url: "http://api.tstfy.co/users",
         type: "POST",
 		crossDomain: true,
+        contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify({
           username: "abcedf",
           email: "abc@gmail.com",
