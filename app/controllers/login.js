@@ -1,5 +1,6 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
+import $ from 'jquery';
 
 export default Controller.extend({
   isActive: false,
@@ -24,7 +25,7 @@ export default Controller.extend({
     },
     createUser() {
       // POST users
-      Ember.$.ajax({
+      this.$().ajax({
         url: "api.tstfy.co/users",
         type: "POST",
         data: JSON.stringify({
