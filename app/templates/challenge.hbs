@@ -12,29 +12,33 @@
 	</p>
   </div>
   <div class="tile is-ancestor">
-    <div class="tile is-vertical is-4">
+    <div class="tile is-vertical is-6">
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-primary">
-            <p class="subtitle">Owner: {{this.model.owner}} </p>
+            <p class="subtitle">Owner: {{this.model.challenge.owner}} </p>
             <div class="detail type">
-              <span>Type:</span> {{this.model.category}}
+              <span>Type:</span> {{this.model.challenge.category}}
             </div>
             <div class="detail start date">
-              <span>Start Date:</span> {{this.model.startdate}}
+              <span>Start Date:</span> {{this.model.challenge.startdate}}
             </div>
             <div class="detail start date">
-              <span>End Date:</span> {{this.model.enddate}}
+              <span>End Date:</span> {{this.model.challenge.enddate}}
             </div>
             <div class="detail bedrooms">
-              <span>Number of candidates:</span> {{this.model.candidates}}
+              <span>Number of candidates:</span> {{this.model.challenge.candidates}}
+            </div>
+			<div class="detail bedrooms">
+              <span>Git Repository:</span> 
+              <textarea class="textarea has-fixed-size" value="{{this.model.challenge.gitrepo}}" placeholder="No Git repository created yet" rows="1" readonly></textarea>
             </div>
           </article>
         </div>
       </div>
     </div>
   </div>
-  {{candidate-list}}
+  {{candidate-list candidates = this.model.candidates}}
   <p class="control">
     <a class="button is-success is-pulled-right" {{action 'toggleNewCandidate'}}>
       <span>New Candidate</span>

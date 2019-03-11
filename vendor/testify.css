@@ -1,23 +1,23 @@
-.completed {
+.accept {
     background-color: #99ff99;
 }
-.table tr.completed:hover {
+.table tr.accept:hover {
 	background-color: #80ff80;
 }
 
-.failed {
+.reject {
 	background-color: #ff9999;
 }
 
-.table tr.failed:hover {
+.table tr.reject:hover {
 	background-color: #ff8080;
 }
 
-.in-progress{
+.pending{
     background-color: #ffff99;
 }
 
-.table tr.in-progress:hover {
+.table tr.pending:hover {
 	background-color: #ffff80;
 }
 

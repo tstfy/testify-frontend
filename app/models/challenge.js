@@ -8,5 +8,6 @@ export default DS.Model.extend({
    enddate: DS.attr(),
    category: DS.attr(),
    candidates: DS.attr(),
-   description: DS.attr()
+   description: DS.attr(),
+   gitrepo: DS.attr()
 });
