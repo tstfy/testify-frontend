@@ -25,16 +25,16 @@ export default Controller.extend({
     },
     createUser() {
       // POST users
-      this.$().ajax({
-        url: "api.tstfy.co/users",
+        $.ajax({
+        url: "http://api.tstfy.co/users",
         type: "POST",
+		crossDomain: true,
         data: JSON.stringify({
-          username: "",
-          email: "",
-          password: "",
-          f_name: "",
-          l_name: "",
-          role: 0
+          username: "abcedf",
+          email: "abc@gmail.com",
+          password: "avcasdom",
+          f_name: "Jeryy",
+          l_name: "ASMDPAS"
         })
       })
         .then(function(resp) {
