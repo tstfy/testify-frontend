@@ -8,7 +8,7 @@ export default Component.extend({
   session: service(),
   actions: {
     toggleMenu() {
-    this.toggleProperty("showMenu");
+      this.toggleProperty("showMenu");
     },
     toggleModal() {
       this.toggleProperty("showModal");
@@ -18,7 +18,7 @@ export default Component.extend({
       this.toggleProperty("showNewChallenge");
     },
     saveChallenge() {
-    //Include POST call somewhere to save challenge
+      //Include POST call somewhere to save challenge
     },
     logout() {
       this.get("session").invalidate();

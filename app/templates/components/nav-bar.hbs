@@ -3,7 +3,8 @@
     <a class="navbar-item" href="/">
       <img src="/images/logo.png" alt="Description" width="112" height="100">
     </a>
-    <div {{action 'toggleMenu'}} class="navbar-burger burger {{if showMenu "is-active"}}" data-target="navbarExampleTransparentExample">
+    <div {{action 'toggleMenu'}} class="navbar-burger burger {{if showMenu "is-active"}}"
+      data-target="navbarExampleTransparentExample">
       <span></span>
       <span></span>
       <span></span>
@@ -13,16 +14,16 @@
   <div id="navbarExampleTransparentExample" class="navbar-menu {{if showMenu "is-active"}}">
     <div class="navbar-start">
       <a class="navbar-item" href="/home">
-          Home
+        Home
       </a>
       <a class="navbar-item">
         {{#link-to "about"}}
-          About
+        About
         {{/link-to}}
       </a>
       <a class="navbar-item">
         {{#link-to "contact"}}
-          Contact
+        Contact
         {{/link-to}}
       </a>
       {{#if session.isAuthenticated}}
@@ -31,12 +32,9 @@
           Profile
         </a>
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="/challenges">
-            Challenges
-          </a>
-          <a class="navbar-item" href="/profile">
+          {{!-- <a class="navbar-item" href="/profile">
             Settings
-          </a>
+          </a> --}}
           <a {{action 'toggleModal'}} class="navbar-item">
             Logout
           </a>
@@ -57,17 +55,17 @@
     </div> -->
   </div>
   {{#if session.isAuthenticated}}
-	<div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a class="button is-success" {{action 'toggleNewChallenge'}}>
-              <span>New Challenge</span>
-            </a>
-          </p>
-        </div>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="field is-grouped">
+        <p class="control">
+          <a class="button create" {{action 'toggleNewChallenge'}}>
+            <span>New Challenge</span>
+          </a>
+        </p>
       </div>
     </div>
+  </div>
   {{/if}}
 </nav>
 <!-- logout modal -->
@@ -81,41 +79,41 @@
     </header>
     <section class="modal-card-body">
       <div class="field">
-	    <label class="label">Title <span class="has-text-danger">*</span></label>
-	    <div class="control">
-		  <input class="input" type="text" placeholder="Challenge title" required>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <label class="label">Description</label>
-	    <div class="control">
-		  <textarea class="textarea" placeholder="Challenge description"></textarea>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <label class="label">Type of Challenge</label>
-	    <div class="control">
-		  <input class="input" type="text" placeholder="Challenge type">
-	    </div>
-	  </div>
-	  <!-- Using generic datepicker, no css implemented yet -->
-	  <div class="field-body">
-	    <div class="field">
-	    <label class="label">Start Date</label>
-	    <div class="control">
-		  <input class="input" type="date" placeholder="Start date">
-	    </div>
-		</div>
-		<div class="field">
-	    <label class="label">End Date</label>
-	    <div class="control">
-		  <input class="input" type="date" placeholder="End date">
-	    </div>
-		</div>
-	  </div>
+        <label class="label">Title <span class="has-text-danger">*</span></label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Challenge title" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Challenge description"></textarea>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Type of Challenge</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Challenge type">
+        </div>
+      </div>
+      <!-- Using generic datepicker, no css implemented yet -->
+      <div class="field-body">
+        <div class="field">
+          <label class="label">Start Date</label>
+          <div class="control">
+            <input class="input" type="date" placeholder="Start date">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">End Date</label>
+          <div class="control">
+            <input class="input" type="date" placeholder="End date">
+          </div>
+        </div>
+      </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success" {{action "saveChallenge"}} type="submit">Save</button>
+      <button class="button create" {{action "saveChallenge"}} type="submit">Save</button>
       <button class="button" {{action "toggleNewChallenge"}}>Cancel</button>
     </footer>
   </div>

@@ -22,17 +22,23 @@
 }
 
 .table.is-centered td {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .challenge {
   background-color: #b3d1d8;
 }
 
+.create {
+  background-color: #00d1b2 !important;
+  color: #ffffff !important;
+  border-radius: 290486px !important;
+}
+
 /* Login page css*/
 form#login-form {
-	padding-top: 10%;
-	padding-bottom: 5%;
+  padding-top: 10%;
+  padding-bottom: 5%;
 }
 
 #github-login {
@@ -40,4 +46,3 @@ form#login-form {
   height: 40px;
   cursor: pointer;
 }
-
