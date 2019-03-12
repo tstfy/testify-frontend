@@ -22,7 +22,7 @@ export default ToriiAuthenticator.extend({
       config.torii.providers["github-oauth2"].tokenExchangeUri;
 
     return this._super(...arguments).then(data => {
-      console.log("data ", data);
+      console.log("GITHUB data ", data);
       return ajax
         .request(tokenExchangeUri, {
           type: "POST",
@@ -34,7 +34,7 @@ export default ToriiAuthenticator.extend({
           })
         })
         .then(response => {
-          console.log("response ", response);
+          console.log("GITHUB response ", response);
           return {
             access_token: JSON.parse(response).access_token,
             provider: data.provider
