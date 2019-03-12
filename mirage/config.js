@@ -9,8 +9,6 @@ export default function() {
         challengeid: "1",
         title: "Facebook Coding Challenge",
         owner: "Veruca Salt",
-        startdate: "Tue Jul 17 2018",
-        enddate: "Tue Jul 24 2018",
         category: "Algorithm",
         candidates: 15,
         description:
@@ -25,8 +23,6 @@ export default function() {
         challengeid: "2",
         title: "Google Coding Challenge",
         owner: "Mike TV",
-        startdate: "Tue Jul 17 2018",
-        enddate: "Tue Jul 24 2018",
         category: "Design",
         candidates: 10,
         description:
@@ -41,8 +37,6 @@ export default function() {
         challengeid: "3",
         title: "Amazon Coding Challenge",
         owner: "Violet Beauregarde",
-        startdate: "Tue Jul 17 2018",
-        enddate: "Tue Jul 24 2018",
         category: "Data Structures",
         candidates: 30,
         description:

@@ -12,13 +12,13 @@
           <form id="login-form">
             <div class="field">
               <div class="control">
-                <input class="input is-large" type="email" placeholder="Email" autofocus="">
+                {{input value=this.username class="input is-large" type="email" placeholder="Username" autofocus=""}}
               </div>
             </div>
 
             <div class="field">
               <div class="control">
-                <input class="input is-large" type="password" placeholder="Password">
+                {{input value=this.password class="input is-large" type="password" placeholder="Password"}}
               </div>
             </div>
             {{!-- <div class="field">
@@ -27,7 +27,8 @@
                 Remember me
               </label>
             </div> --}}
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
+            <button class="button is-block is-info is-large is-fullwidth"
+              {{action 'emailLogin' this.username this.password}}>Login </button>
           </form>
           <div class="content">
             <p>or sign in with</p>
