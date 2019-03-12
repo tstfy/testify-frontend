@@ -7,11 +7,6 @@ export default Controller.extend({
   actions: {
     toggleModal() {
       this.toggleProperty("isActive");
-    },
-    login() {
-      if (!this.get("session").isAuthenticated)
-        this.get("session").authenticate("authenticator:torii", "github");
-      if (this.get("session").isAuthenticated) this.transitionToRoute("home");
     }
   }
 });

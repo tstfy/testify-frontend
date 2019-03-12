@@ -1,10 +1,13 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
-import $ from 'jquery';
+import $ from "jquery";
 
 export default Controller.extend({
   isActive: false,
   showSignUp: false,
+  username: "",
+  password: "",
+  email: "",
   session: service(),
   actions: {
     toggleModal() {
@@ -15,9 +18,11 @@ export default Controller.extend({
         this.get("session").authenticate("authenticator:torii", "github");
       if (this.get("session").isAuthenticated) this.transitionToRoute("home");
     },
-    emailLogin() {
+    emailLogin(...userData) {
+      console.log("EMAIL LOGIN " + userData);
       if (!this.get("session").isAuthenticated)
-        this.get("session").authenticate("authenticator:email", "email");
+        this.get("session").authenticate("authenticator:email", userData);
+      console.log(this.get("session"));
       if (this.get("session").isAuthenticated) this.transitionToRoute("home");
     },
     toggleSignUp() {
@@ -25,29 +30,29 @@ export default Controller.extend({
     },
     createUser() {
       // POST users
-        $.ajax({
+      $.ajax({
         url: "http://api.tstfy.co/users",
         type: "POST",
-		crossDomain: true,
-        contentType: 'application/json;charset=UTF-8',
+        crossDomain: true,
+        contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
-          username: "abcedf",
-          email: "abc@gmail.com",
-          password: "avcasdom",
+          username: this.username,
+          email: this.email,
+          password: this.password,
           f_name: "Jeryy",
           l_name: "ASMDPAS"
         })
       })
         .then(function(resp) {
           // handle your server response here
-          console.log(resp);
+          console.log("CREATE USER RESPONSE: " + resp);
+          return resp;
         })
-        .then(this.actions.emailLogin)
+        .then(resp => this.send("emailLogin", resp))
         .catch(function(error) {
           // handle errors here
-          console.log(error);
+          console.log("CREATE USER ERROR: " + error);
         });
-      // then emailLogin()
     }
   }
 });
