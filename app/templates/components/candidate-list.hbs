@@ -2,84 +2,93 @@
   <thead>
     <tr>
       <th>User</th>
-      <th><abbr title="Git Repository Link">Git-Repo</abbr></th>
+      <th>
+        <div id="ember253" class="flash-message alert alert-success active ember-view">
+          <p>Copied!</p>
+        </div>
+        <abbr title="Git Repository Link">Git-Repo</abbr>
+      </th>
       <th>Status</th>
     </tr>
   </thead>
   <tbody>
     {{#each candidates key="id" as |candidate|}}
     {{#if (eq candidate.status '0')}}
-      <tr class="pending">      
+    <tr class="pending">
       <td>{{candidate.user}}</td>
-      <td><a class="button is-primary" {{action "copyToClipboard" candidate.gitrepo}}>Copy</a></td>
+
+      <td><a id="repo" class="button is-primary">
+          {{#copy-button clipboardTarget="#url" success=(action "success") error=(action "error")}}
+          Copy
+          {{/copy-button}}</a></td>
       <td>
-      <div class="select">
-        <select>
-          {{#if (eq candidate.status '0')}}
+        <div class="select">
+          <select>
+            {{#if (eq candidate.status '0')}}
             <option value="0" selected>Pending</option>
             <option value="1">Accept</option>
             <option value="2">Reject</option>
-          {{else if (eq candidate.status '1')}}
+            {{else if (eq candidate.status '1')}}
             <option value="0">Pending</option>
             <option value="1" selected>Accept</option>
             <option value="2">Reject</option>
-          {{else if (eq candidate.status '2')}}
+            {{else if (eq candidate.status '2')}}
             <option value="0">Pending</option>
             <option value="1">Accept</option>
             <option value="2" selected>Reject</option>
-          {{/if}}
-        </select>
-      </div>
+            {{/if}}
+          </select>
+        </div>
       </td>
-      </tr>
+    </tr>
     {{else if (eq candidate.status '1')}}
-      <tr class="accept">
+    <tr class="accept">
       <td>{{candidate.user}}</td>
       <td><a class="button is-primary" {{action "copyToClipboard" candidate.gitrepo}}>Copy</a></td>
       <td>
-      <div class="select">
-        <select>
-          {{#if (eq candidate.status '0')}}
+        <div class="select">
+          <select>
+            {{#if (eq candidate.status '0')}}
             <option value="0" selected>Pending</option>
             <option value="1">Accept</option>
             <option value="2">Reject</option>
-          {{else if (eq candidate.status '1')}}
+            {{else if (eq candidate.status '1')}}
             <option value="0">Pending</option>
             <option value="1" selected>Accept</option>
             <option value="2">Reject</option>
-          {{else if (eq candidate.status '2')}}
+            {{else if (eq candidate.status '2')}}
             <option value="0">Pending</option>
             <option value="1">Accept</option>
             <option value="2" selected>Reject</option>
-          {{/if}}
-        </select>
-      </div>
+            {{/if}}
+          </select>
+        </div>
       </td>
-      </tr>
+    </tr>
     {{else if (eq candidate.status '2')}}
-      <tr class="reject">
+    <tr class="reject">
       <td>{{candidate.user}}</td>
       <td><a class="button is-primary" {{action "copyToClipboard" candidate.gitrepo}}>Copy</a></td>
       <td>
-      <div class="select">
-        <select>
-          {{#if (eq candidate.status '0')}}
+        <div class="select">
+          <select>
+            {{#if (eq candidate.status '0')}}
             <option value="0" selected>Pending</option>
             <option value="1">Accept</option>
             <option value="2">Reject</option>
-          {{else if (eq candidate.status '1')}}
+            {{else if (eq candidate.status '1')}}
             <option value="0">Pending</option>
             <option value="1" selected>Accept</option>
             <option value="2">Reject</option>
-          {{else if (eq candidate.status '2')}}
+            {{else if (eq candidate.status '2')}}
             <option value="0">Pending</option>
             <option value="1">Accept</option>
             <option value="2" selected>Reject</option>
-          {{/if}}
-        </select>
-      </div>
+            {{/if}}
+          </select>
+        </div>
       </td>
-      </tr>
+    </tr>
     {{/if}}
     {{/each}}
   </tbody>
