@@ -2,7 +2,9 @@ import Base from "ember-simple-auth/authenticators/base";
 import { inject as service } from "@ember/service";
 
 export default Base.extend({
-  restore(data) {},
+  restore(data) {
+    console.log(data);
+  },
   ajax: service(),
   authenticate(...args) {
     const ajax = this.get("ajax");
@@ -30,5 +32,7 @@ export default Base.extend({
         console.log("email authenticate error ", error);
       });
   },
-  invalidate(data) {}
+  invalidate(data) {
+    console.log(data);
+  }
 });

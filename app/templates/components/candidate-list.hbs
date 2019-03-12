@@ -1,7 +1,17 @@
+<script>
+  var clipboard = new ClipboardJS('.button');
+  clipboard.on('success', function (e) {
+    console.log(e);
+  });
+  clipboard.on('error', function (e) {
+    console.log(e);
+  });
+</script>
 <table class="table is-fullwidth is-hoverable is-centered is-narrow">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Name</th>
+      <th>Email</th>
       <th>
         <div id="ember253" class="flash-message alert alert-success active ember-view">
           <p>Copied!</p>
@@ -13,14 +23,17 @@
   </thead>
   <tbody>
     {{#each candidates key="id" as |candidate|}}
+    <textarea style="display: none;" id="gitrepo">{{candidate.gitrepo}}</textarea>
     {{#if (eq candidate.status '0')}}
     <tr class="pending">
       <td>{{candidate.user}}</td>
-
-      <td><a id="repo" class="button is-primary">
-          {{#copy-button clipboardTarget="#url" success=(action "success") error=(action "error")}}
-          Copy
-          {{/copy-button}}</a></td>
+      <td>{{candidate.email}}</td>
+      <a id="repo" class="button is-primary" data-clipboard-target="#gitrepo">
+        {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
+        Copied!
+        {{/ember-tooltip}}
+        Copy
+      </a>
       <td>
         <div class="select">
           <select>
@@ -44,7 +57,13 @@
     {{else if (eq candidate.status '1')}}
     <tr class="accept">
       <td>{{candidate.user}}</td>
-      <td><a class="button is-primary" {{action "copyToClipboard" candidate.gitrepo}}>Copy</a></td>
+      <td>{{candidate.email}}</td>
+      <a id="repo" class="button is-primary" data-clipboard-target="#gitrepo">
+        {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
+        Copied!
+        {{/ember-tooltip}}
+        Copy
+      </a>
       <td>
         <div class="select">
           <select>
@@ -68,7 +87,13 @@
     {{else if (eq candidate.status '2')}}
     <tr class="reject">
       <td>{{candidate.user}}</td>
-      <td><a class="button is-primary" {{action "copyToClipboard" candidate.gitrepo}}>Copy</a></td>
+      <td>{{candidate.email}}</td>
+      <a id="repo" class="button is-primary">
+        {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
+        Copied!
+        {{/ember-tooltip}}
+        Copy
+      </a>
       <td>
         <div class="select">
           <select>

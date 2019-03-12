@@ -13,7 +13,8 @@ export default function() {
         candidates: 15,
         description:
           "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.",
-        gitrepo: "gitlab@git.uwaterloo.ca:ece1337-1191/ece69-12345-a3-abcdef.git"
+        gitrepo:
+          "gitlab@git.uwaterloo.ca:ece1337-1191/ece69-12345-a3-abcdef.git"
       }
     },
     {
@@ -27,7 +28,8 @@ export default function() {
         candidates: 10,
         description:
           "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro.",
-        gitrepo: "gitlab@git.uwaterloo.ca:ece1337-1191/ece69-12345-a5-abcdef.git"
+        gitrepo:
+          "gitlab@git.uwaterloo.ca:ece1337-1191/ece69-12345-a5-abcdef.git"
       }
     },
     {
@@ -41,17 +43,19 @@ export default function() {
         candidates: 30,
         description:
           "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet.",
-        gitrepo: "gitlab@git.uwaterloo.ca:ece1337-1191/ece141-12345-a7-abcdef.git"
+        gitrepo:
+          "gitlab@git.uwaterloo.ca:ece1337-1191/ece141-12345-a7-abcdef.git"
       }
     }
   ];
-  
+
   let candidates = [
     {
       type: "candidate",
       id: "1",
       attributes: {
         challengeid: "1",
+        email: "awefawef",
         user: "first-to-last@gmail.com",
         gitrepo: "https://gerrit.googlesource.com/git-repo",
         status: "1"
@@ -61,17 +65,19 @@ export default function() {
       type: "candidate",
       id: "2",
       attributes: {
-		challengeid: "1",
+        challengeid: "1",
+        email: "awefawef",
         user: "failed-user@hotmail.com",
         gitrepo: "https://github.com/git/git.git",
         status: "2"
       }
     },
-	{
+    {
       type: "candidate",
       id: "3",
       attributes: {
-		challengeid: "1",
+        challengeid: "1",
+        email: "awefawef",
         user: "pending@someemail.com",
         gitrepo: "https://github.com/git/git.git",
         status: "0"
@@ -81,7 +87,8 @@ export default function() {
       type: "candidate",
       id: "4",
       attributes: {
-		challengeid: "2",
+        challengeid: "2",
+        email: "awefawef",
         user: "mynameis@jeff.com",
         gitrepo: "https://gerrit.googlesource.com/git-repo",
         status: "2"
@@ -100,16 +107,18 @@ export default function() {
       data: challenges.find(challenge => request.params.id === challenge.id)
     };
   });
-  
+
   this.get("/candidates", function(db, request) {
     console.log(db, request);
     return { data: candidates };
   });
-  
+
   this.get("/candidates/:id", function(db, request) {
     console.log(db, request);
     return {
-      data: candidates.find(candidate => request.params.id === candidate.attributes.challengeid)
+      data: candidates.find(
+        candidate => request.params.id === candidate.attributes.challengeid
+      )
     };
   });
 }
