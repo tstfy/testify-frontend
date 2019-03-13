@@ -3,6 +3,9 @@ import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return this.store.findAll('challenge');
+    return this.store.find(
+      "challenges",
+      this.session.data.authenticated.user.employer_id
+    );
   }
 });

@@ -47,33 +47,16 @@ export default Controller.extend({
         this.set("loginValid", false);
       }
     },
-    setUserData(...userData) {
-      // {
-      //   "company": "Facebook",
-      //   "email": "ykcai@uwaterloo.ca",
-      //   "employer_id": 1,
-      //   "f_name": "Michael",
-      //   "l_name": "Cai",
-      //   "last_modified": "2019-03-13T18:02:53+00:00",
-      //   "username": "ykcai@uwaterloo.ca"
-      // }
-      console.log(userData);
-      // this.store.createRecord("user", {
-      //   employer_id: 1,
-      //   username: "awef",
-      //   email: "awef",
-      //   fname: "awef",
-      //   lname: "awef",
-      //   role: 1
-      // });
-    },
     githubLogin() {
       if (!this.get("session").isAuthenticated) {
         this.get("session")
           .authenticate("authenticator:torii", "github")
           .then(() => {
             if (this.get("session").isAuthenticated) {
-              this.transitionToRoute("home");
+              this.transitionToRoute(
+                "home",
+                this.session.data.authenticated.user.employer_id
+              );
             }
           });
       }
@@ -81,18 +64,19 @@ export default Controller.extend({
     emailLogin(...userData) {
       this.send("validateLoginFields");
       if (this.loginValid) {
-        this.send("setUserData", "");
         this.set("isLoading", true);
         console.log("email login :");
         console.log(userData);
         if (!this.get("session").isAuthenticated) {
           this.get("session")
-            .authenticate("authenticator:email", userData[0], userData[1])
-            .then(response => {
+            .authenticate("authenticator:email", this.username, this.password)
+            .then(() => {
               this.set("isLoading", false);
               if (this.get("session").isAuthenticated) {
-                this.send("setUserData", response);
-                this.transitionToRoute("home");
+                this.transitionToRoute(
+                  "home",
+                  this.session.data.authenticated.user.employer_id
+                );
               }
             })
             .catch(reason => {
@@ -138,9 +122,7 @@ export default Controller.extend({
               return resp;
             }
           })
-          .then(resp =>
-            this.send("emailLogin", resp, this.username, this.password)
-          )
+          .then(resp => this.send("emailLogin", resp))
           .catch(error => {
             // handle errors here
             console.log("Sign Up Failed: ", JSON.parse(error));

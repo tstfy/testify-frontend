@@ -39,7 +39,7 @@ export default Base.extend({
         })
         .catch(function(xhr, status, error) {
           console.log("email authenticate error ", xhr, status, error);
-          resolve(xhr.responseJSON || xhr.responseText);
+          reject(xhr.responseJSON || xhr.responseText);
         });
     });
   },

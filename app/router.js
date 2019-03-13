@@ -10,10 +10,10 @@ const Router = EmberRouter.extend(ApplicationRouteMixin, {
 Router.map(function() {
   this.route("about");
   this.route("contact");
-  this.route("profile");
-  this.route("home");
-  this.route('login');
-  this.route('challenge', { path: '/challenge/:challenge_id' });
+  this.route("profile", { path: "/user/:userid/profile" });
+  this.route("home", { path: "/user/:userid/challenges" });
+  this.route("login");
+  this.route("challenges", { path: "/user/:userid/challenges/:challenge_id" });
 });
 
 export default Router;

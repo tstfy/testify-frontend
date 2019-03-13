@@ -49,20 +49,37 @@
           </section>
         </div>
       </div> --}}
-      {{#link-to 'home'}}
+      {{#if session.isAuthenticated}}
+      {{#link-to 'home' session.data.authenticated.user.employer_id}}
       <a class="button" style="
-          margin-top: 20px;
-          color: #235e72;
-          margin-right: 30px;
-          position:absolute;
-          top: 20px;
-          right: 0;">
+            margin-top: 20px;
+            color: #235e72;
+            margin-right: 30px;
+            position:absolute;
+            top: 20px;
+            right: 0;">
         <i class="fas fa-info-circle">
           Demo
         </i>
         Demo
       </a>
       {{/link-to}}
+      {{else}}
+      {{#link-to 'login'}}
+      <a class="button" style="
+            margin-top: 20px;
+            color: #235e72;
+            margin-right: 30px;
+            position:absolute;
+            top: 20px;
+            right: 0;">
+        <i class="fas fa-info-circle">
+          Demo
+        </i>
+        Demo
+      </a>
+      {{/link-to}}
+      {{/if}}
     </div>
     <div class="container has-text-centered">
       <div class="column is-6 is-offset-3">

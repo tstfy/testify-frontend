@@ -1,23 +1,23 @@
 {{nav-bar}}
 
 <div class="container is-fluid" style="margin-top: 20px;">
-  {{#each model as |challenge|}}
+  {{#each model as |challenges|}}
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-primary" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
-            <p class="title"><a href="/challenge/{{challenge.id}}">{{challenge.title}}</a></p>
-            <p class="subtitle">Owner: {{challenge.owner}} </p>
+            <p class="title"><a href="/challenges/{{challenges.id}}">{{challenges.title}}</a></p>
+            <p class="subtitle">Owner: {{challenges.owner}} </p>
             <div class="detail category">
-              <span>Type:</span> {{challenge.category}}
+              <span>Type:</span> {{challenges.category}}
             </div>
             <div class="detail candidates">
-              <span>Number of candidates:</span> {{challenge.candidates}}
+              <span>Number of candidates:</span> {{challenges.candidates}}
             </div>
             <div class="detail gitrepo">
               <span>Git Repository:</span>
-              <textarea class="textarea has-fixed-size" value="{{challenge.gitrepo}}"
+              <textarea class="textarea has-fixed-size" value="{{challenges.gitrepo}}"
                 placeholder="No Git repository created yet" rows="1" readonly></textarea>
             </div>
           </article>
