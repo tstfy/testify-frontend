@@ -2,37 +2,45 @@ import Base from "ember-simple-auth/authenticators/base";
 import { inject as service } from "@ember/service";
 
 export default Base.extend({
-  restore(data) {
-    console.log(data);
-  },
   ajax: service(),
+  restore: function(data) {
+    return new Promise(function(resolve, reject) {
+      console.log("email session: ", data);
+      if (data.access_token) {
+        resolve(data);
+      } else {
+        reject();
+      }
+    });
+  },
   authenticate(...args) {
     const ajax = this.get("ajax");
-    console.log("email authenticate: ", args);
-    return ajax
-      .request("http://api.tstfy.co/login", {
-        type: "POST",
-        crossDomain: true,
-        dataType: "json",
-        contentType: "application/json",
-        data: JSON.stringify({
-          username: args[0][0],
-          password: args[0][1]
+    const data = JSON.stringify({
+      username: args[0][0],
+      password: args[0][1]
+    });
+    console.log("email authenticate args: ", data);
+    return new Promise(function(resolve, reject) {
+      ajax
+        .request("http://api.tstfy.co/login", {
+          type: "POST",
+          crossDomain: true,
+          contentType: "application/json;charset=UTF-8",
+          data: data
         })
-      })
-      .then(response => {
-        console.log("email authenticate response ", response);
-        if (response != "LOGIN SUCCESS") throw new Error(response);
-        return {
-          access_token: JSON.parse(response),
-          provider: "email"
-        };
-      })
-      .catch(error => {
-        console.log("email authenticate error ", error);
-      });
-  },
-  invalidate(data) {
-    console.log(data);
+        .then(
+          function(response) {
+            console.log("email authenticate response ", response);
+            resolve({
+              access_token: "1234567889",
+              provider: "api"
+            });
+          },
+          function(xhr, status, error) {
+            console.log("email authenticate error ", xhr, status, error);
+            reject(xhr.responseJSON || xhr.responseText);
+          }
+        );
+    });
   }
 });

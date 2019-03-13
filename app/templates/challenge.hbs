@@ -6,7 +6,7 @@
       <h1 class="title">{{this.model.title}}</h1>
     </p>
     <p class="field-label">
-      <a class="button create" {{action 'toggleUpdateChallenge'}}>
+      <a class="button create" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleUpdateChallenge'}}>
         <span>Update</span>
       </a>
     </p>
@@ -29,9 +29,10 @@
             <div class="detail bedrooms">
               <span>Number of candidates:</span> {{this.model.challenge.candidates}}
             </div>
-			<div class="detail bedrooms">
-              <span>Git Repository:</span> 
-              <textarea class="textarea has-fixed-size" value="{{this.model.challenge.gitrepo}}" placeholder="No Git repository created yet" rows="1" readonly></textarea>
+            <div class="detail bedrooms">
+              <span>Git Repository:</span>
+              <textarea class="textarea has-fixed-size" value="{{this.model.challenge.gitrepo}}"
+                placeholder="No Git repository created yet" rows="1" readonly></textarea>
             </div>
             <div class="detail bedrooms">
               <span>Source Git Repo:</span> {{this.model.gitlink}}
@@ -43,7 +44,8 @@
   </div>
   {{candidate-list candidates = this.model.candidates}}
   <p class="control">
-    <a class="button create is-pulled-right" {{action 'toggleNewCandidate'}}>
+    <a class="button create is-pulled-right" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
+      {{action 'toggleNewCandidate'}}>
       <span>New Candidate</span>
     </a>
   </p>
@@ -54,7 +56,7 @@
   {{#if showUpdateChallenge}}
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Update Challenge</p>
+      <p class="modal-card-title" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">Update Challenge</p>
       <button class="delete" aria-label="close" {{action "toggleUpdateChallenge"}}></button>
     </header>
     <section class="modal-card-body">
@@ -77,7 +79,7 @@
         </div>
       </div>
       <!-- Using generic datepicker, no css implemented yet -->
-      <div class="field-body">
+      {{!-- <div class="field-body">
         <div class="field">
           <label class="label">Start Date</label>
           <div class="control">
@@ -90,7 +92,7 @@
             <input class="input" type="date" value="{{this.model.enddate}}" placeholder="End date">
           </div>
         </div>
-      </div>
+      </div> --}}
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" {{action "updateChallenge"}} type="submit">Save</button>

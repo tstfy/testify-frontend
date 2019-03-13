@@ -27,8 +27,16 @@
                 Remember me
               </label>
             </div> --}}
-            <button class="button is-block is-info is-large is-fullwidth"
+            {{#if this.isLoading}}
+            <div class="lds-ripple">
+              <div></div>
+              <div></div>
+            </div>
+            {{else}}
+            <button style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
+              class="button is-block is-info is-large is-fullwidth"
               {{action 'emailLogin' this.username this.password}}>Login </button>
+            {{/if}}
           </form>
           <div class="content">
             <p>or sign in with</p>
@@ -64,50 +72,61 @@
       <div class="field">
         <label class="label">Username <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" placeholder="Username" required>
+          {{input value=this.username class="input" placeholder="Username" autofocus="" required=true}}
         </div>
       </div>
       <div class="field">
         <label class="label">Email Address <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" type="email" placeholder="Email address" required>
+          {{input value=this.email class="input" type="email" placeholder="Email address" required=true}}
         </div>
       </div>
       <div class="field">
         <label class="label">Password <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required>
+          {{input value=this.password class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required=true}}
         </div>
         <label class="label"><span class="has-text-danger is-size-7">6 or more characters</span></label>
       </div>
       <div class="field">
         <label class="label">Confirm Password <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required>
+          {{input value=this.confirm_password class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required=true}}
         </div>
       </div>
       <div class="field">
         <label class="label">First Name <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" placeholder="First name" required>
+          {{input value=this.first_name class="input" placeholder="First Name" required=true}}
         </div>
       </div>
       <div class="field">
         <label class="label">Last Name <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" placeholder="Last name" required>
+          {{input value=this.last_name class="input" placeholder="Last Name" required=true}}
         </div>
       </div>
       <div class="field">
         <label class="label">Company</label>
         <div class="control">
-          <input class="input" placeholder="Company" required>
+          {{input value=this.company class="input" placeholder="Company" required=true}}
         </div>
       </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success" {{action "createUser"}} type="submit">Save</button>
-      <button class="button" {{action "toggleSignUp"}}>Cancel</button>
+
+      <button class="button is-success" {{action "createUser"}} type="submit">
+        Sign Up
+      </button>
+      <button class="button" {{action "toggleSignUp"}}>Cancel </button>
+      {{#if this.isLoading}}
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+      {{else}}
+      <label class="label has-text-danger">{{this.error}} </label>
+      {{/if}}
     </footer>
   </div>
 </div>
