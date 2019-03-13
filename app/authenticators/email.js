@@ -15,11 +15,12 @@ export default Base.extend({
   },
   authenticate(...args) {
     const ajax = this.get("ajax");
+    console.log("email authenticate args: ", args);
     const data = JSON.stringify({
       username: args[0],
       password: args[1]
     });
-    console.log("email authenticate args: ", data);
+    console.log("email authenticate data: ", data);
     return new Promise(function(resolve, reject) {
       ajax
         .request("http://api.tstfy.co/login", {
@@ -38,7 +39,7 @@ export default Base.extend({
         })
         .catch(function(xhr, status, error) {
           console.log("email authenticate error ", xhr, status, error);
-          reject(xhr.responseJSON || xhr.responseText);
+          resolve(xhr.responseJSON || xhr.responseText);
         });
     });
   },

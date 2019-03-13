@@ -87,7 +87,7 @@ export default Controller.extend({
         console.log(userData);
         if (!this.get("session").isAuthenticated) {
           this.get("session")
-            .authenticate("authenticator:email", userData[1], userData[2])
+            .authenticate("authenticator:email", userData[0], userData[1])
             .then(response => {
               this.set("isLoading", false);
               if (this.get("session").isAuthenticated) {
@@ -97,8 +97,7 @@ export default Controller.extend({
             })
             .catch(reason => {
               this.set("isLoading", false);
-              alert(reason.error || reason);
-              this.set("errorMessage", reason.error || reason);
+              alert(reason);
             });
         }
       } else {
