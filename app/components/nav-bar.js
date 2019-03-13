@@ -57,6 +57,7 @@ export default Component.extend({
           if (!resp.repo_link) {
             throw JSON.stringify(`Create Challenge Failed: ${resp}`);
           } else {
+            this.toggleProperty("showModal");
             this.toggleProperty("showNewChallenge");
             this.clearFields();
           }
