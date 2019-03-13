@@ -59,7 +59,7 @@
     <div class="navbar-item">
       <div class="field is-grouped">
         <p class="control">
-          <a class="button create" {{action 'toggleNewChallenge'}}>
+          <a class="button create" style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewChallenge'}}>
             <span>New Challenge</span>
           </a>
         </p>
@@ -97,7 +97,7 @@
         </div>
       </div>
       <!-- Using generic datepicker, no css implemented yet -->
-      <div class="field-body">
+      {{!-- <div class="field-body">
         <div class="field">
           <label class="label">Start Date</label>
           <div class="control">
@@ -110,10 +110,11 @@
             <input class="input" type="date" placeholder="End date">
           </div>
         </div>
-      </div>
+      </div> --}}
     </section>
     <footer class="modal-card-foot">
-      <button class="button create" {{action "saveChallenge"}} type="submit">Save</button>
+      <button class="button create" {{action "saveChallenge"}}style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1)"
+        type="submit">Save</button>
       <button class="button" {{action "toggleNewChallenge"}}>Cancel</button>
     </footer>
   </div>

@@ -15,7 +15,16 @@ import config from "../config/environment";
 export default ToriiAuthenticator.extend({
   torii: service(),
   ajax: service(),
-
+  restore: function(data) {
+    return new Promise(function(resolve, reject) {
+      console.log("github session: ", data);
+      if (data.access_token) {
+        resolve(data);
+      } else {
+        reject();
+      }
+    });
+  },
   authenticate() {
     const ajax = this.get("ajax");
     const tokenExchangeUri =
