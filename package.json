@@ -14,7 +14,7 @@
     "build": "ember build",
     "lint:js": "eslint .",
     "dev": "npm i && ember build && ember serve",
-    "prod": "npm i && ember build --environment=production && ember serve -prod",
+    "prod": "npm i && ember build --environment=production && ember serve -prod -lr false",
     "test": "ember test"
   },
   "devDependencies": {
