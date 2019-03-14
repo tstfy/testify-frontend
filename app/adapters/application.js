@@ -1,6 +1,7 @@
 import DS from "ember-data";
+import config from "../config/environment";
 
 export default DS.JSONAPIAdapter.extend({
-  host: "https://api.tstfy.co",
+  host: config.APP.baseURL,
   namespace: ""
 });

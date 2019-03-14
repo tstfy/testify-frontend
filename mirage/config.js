@@ -1,5 +1,8 @@
 export default function() {
   this.passthrough("https://api.tstfy.co/**");
+  this.passthrough("http://api.tstfy.co/**");
+  this.passthrough("https://api-master.tstfy.co/**");
+  this.passthrough("http://api-master.tstfy.co/**");
   this.passthrough("https://localhost:4200/api/token");
   this.passthrough("https://beta.tstfy.co/api/token");
   this.passthrough("https://tstfy.co/api/token");

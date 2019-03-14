@@ -2,6 +2,7 @@ import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import $ from "jquery";
 import { run } from "@ember/runloop";
+import config from "../config/environment";
 
 export default Controller.extend({
   isLoading: false,
@@ -100,7 +101,7 @@ export default Controller.extend({
         this._super(...arguments);
         this.set("isLoading", true);
         $.ajax({
-          url: "https://api.tstfy.co/users",
+          url: config.APP.baseURL + "/users",
           type: "POST",
           crossDomain: true,
           contentType: "application/json;charset=UTF-8",

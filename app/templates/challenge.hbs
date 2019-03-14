@@ -3,7 +3,7 @@
 <div class="container is-fluid" style="margin-top: 20px;">
   <div class="field is-horizontal">
     <p class="field-body">
-      <h1 class="title">{{this.model.title}}</h1>
+      <h1 class="title">{{this.model.challenge.title}}</h1>
     </p>
     <p class="field-label">
       <a class="button create" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleUpdateChallenge'}}>
@@ -16,20 +16,17 @@
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-primary" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
-            <p class="subtitle">Owner: {{this.challenges.owner}} </p>
+            <p class="subtitle">Owner: {{this.challenge.employer_id}} </p>
             <div class="detail type">
-              <span>Type:</span> {{this.model.challenges.category}}
+              <span>Type:</span> {{this.model.challenge.category}}
             </div>
             <div class="detail bedrooms">
-              <span>Number of candidates:</span> {{this.model.challenges.candidates}}
+              <span>Number of candidates:</span> {{this.model.candidates}}
             </div>
             <div class="detail bedrooms">
               <span>Git Repository:</span>
-              <textarea class="textarea has-fixed-size" value="{{this.model.challenges.gitrepo}}"
+              <textarea class="textarea has-fixed-size" value="{{this.model.challenge.repo_link}}"
                 placeholder="No Git repository created yet" rows="1" readonly></textarea>
-            </div>
-            <div class="detail bedrooms">
-              <span>Source Git Repo:</span> {{this.model.gitlink}}
             </div>
           </article>
         </div>
