@@ -98,16 +98,9 @@ export default function() {
     }
   ];
 
-  this.get("/user/:userid/challenges", function(db, request) {
+  this.get("/challenges/", { eid: 2 }, function(db, request) {
     console.log(db, request);
     return { data: challenges };
-  });
-
-  this.get("/challenges/:id", function(db, request) {
-    console.log(db, request);
-    return {
-      data: challenges[0]
-    };
   });
 
   this.get("/candidates", function(db, request) {
@@ -118,9 +111,7 @@ export default function() {
   this.get("/candidates/:id", function(db, request) {
     console.log(db, request);
     return {
-      data: candidates.find(
-        candidate => request.params.id === candidate.attributes.challengeid
-      )
+      data: candidates
     };
   });
 }

@@ -2,6 +2,7 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 
 export default Component.extend({
+  router: service(),
   isLoading: false,
   showModal: false,
   showMenu: false,
@@ -37,6 +38,7 @@ export default Component.extend({
       console.log("Create Challenge: ", title, description, category, employer);
       //Include POST call somewhere to save challenge
       this._super(...arguments);
+      const self = this;
       this.set("isLoading", true);
       $.ajax({
         url: "http://api.tstfy.co/challenges",
@@ -59,7 +61,8 @@ export default Component.extend({
           } else {
             this.toggleProperty("showModal");
             this.toggleProperty("showNewChallenge");
-            this.clearFields();
+            this.send("clearFields");
+            this.send("reload");
           }
         })
         .catch(error => {
@@ -68,6 +71,9 @@ export default Component.extend({
           this.set("error", JSON.parse(error));
           console.log("Create Challenge Error: ", JSON.parse(error));
         });
+    },
+    reload() {
+      this.get("router").transitionTo("home");
     },
     logout() {
       this.get("session").invalidate();

@@ -1,4 +1,4 @@
-import Controller from '@ember/controller';
+import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 
 export default Controller.extend({
@@ -11,15 +11,16 @@ export default Controller.extend({
       this.toggleProperty("showModalChallenge");
       this.toggleProperty("showUpdateChallenge");
     },
-  toggleNewCandidate() {
+    toggleNewCandidate() {
       this.toggleProperty("showModalChallenge");
       this.toggleProperty("showNewCandidate");
+      console.log(model.toJSON());
     },
-  updateChallenge() {
+    updateChallenge() {
       //TODO
     },
-  newCandidate() {
+    newCandidate() {
       //TODO
     }
-	}
+  }
 });

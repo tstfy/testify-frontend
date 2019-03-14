@@ -3,6 +3,9 @@ import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return this.get("store").findRecord("github-user", "#");
+    return this.get("store").findRecord(
+      "user",
+      this.session.data.authenticated.user.employer_id
+    );
   }
 });
