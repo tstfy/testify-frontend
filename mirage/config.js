@@ -1,7 +1,8 @@
 export default function() {
-  this.passthrough("http://api.tstfy.co/**");
-  this.passthrough("http://localhost:4200/api/token");
-  this.passthrough("http://beta.tstfy.co/api/token");
+  this.passthrough("https://api.tstfy.co/**");
+  this.passthrough("https://localhost:4200/api/token");
+  this.passthrough("https://beta.tstfy.co/api/token");
+  this.passthrough("https://tstfy.co/api/token");
 
   let challenges = [
     {

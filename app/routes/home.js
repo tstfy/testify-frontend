@@ -6,5 +6,10 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return this.store.query("challenge", {
       eid: this.session.data.authenticated.user.employer_id
     });
+  },
+  actions: {
+    refreshCurrentRoute() {
+      this.refresh();
+    }
   }
 });

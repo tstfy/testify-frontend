@@ -23,7 +23,7 @@ export default Base.extend({
     console.log("email authenticate data: ", data);
     return new Promise(function(resolve, reject) {
       ajax
-        .request("http://api.tstfy.co/login", {
+        .request("https://api.tstfy.co/login", {
           type: "POST",
           crossDomain: true,
           contentType: "application/json;charset=UTF-8",
