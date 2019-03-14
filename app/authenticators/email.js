@@ -1,5 +1,6 @@
 import Base from "ember-simple-auth/authenticators/base";
 import { inject as service } from "@ember/service";
+import config from "../config/environment";
 
 export default Base.extend({
   ajax: service(),
@@ -23,7 +24,7 @@ export default Base.extend({
     console.log("email authenticate data: ", data);
     return new Promise(function(resolve, reject) {
       ajax
-        .request("http://api.tstfy.co/login", {
+        .request(config.APP.baseURL + "/login", {
           type: "POST",
           crossDomain: true,
           contentType: "application/json;charset=UTF-8",

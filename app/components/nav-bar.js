@@ -1,8 +1,10 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
+import $ from "jquery";
+import { run } from "@ember/runloop";
+import config from "../config/environment";
 
 export default Component.extend({
-  router: service(),
   isLoading: false,
   showModal: false,
   showMenu: false,
@@ -38,10 +40,9 @@ export default Component.extend({
       console.log("Create Challenge: ", title, description, category, employer);
       //Include POST call somewhere to save challenge
       this._super(...arguments);
-      const self = this;
       this.set("isLoading", true);
       $.ajax({
-        url: "http://api.tstfy.co/challenges",
+        url: config.APP.baseURL + "/challenges",
         type: "POST",
         crossDomain: true,
         contentType: "application/json;charset=UTF-8",
@@ -54,15 +55,19 @@ export default Component.extend({
       })
         .then(resp => {
           // handle your server response here
-          this.set("isLoading", false);
-          console.log("Create Challenge Response: ", resp);
+          run(() => {
+            // begin loop
+            // Code that results in jobs being scheduled goes here
+            this.set("isLoading", false);
+            console.log("Create Challenge Response: ", resp);
+          }); // end loop, jobs are flushed and executed
           if (!resp.repo_link) {
             throw JSON.stringify(`Create Challenge Failed: ${resp}`);
           } else {
             this.toggleProperty("showModal");
             this.toggleProperty("showNewChallenge");
             this.send("clearFields");
-            this.send("reload");
+            this.refreshCurrentRoute();
           }
         })
         .catch(error => {
@@ -71,9 +76,6 @@ export default Component.extend({
           this.set("error", JSON.parse(error));
           console.log("Create Challenge Error: ", JSON.parse(error));
         });
-    },
-    reload() {
-      this.get("router").transitionTo("home");
     },
     logout() {
       this.get("session").invalidate();

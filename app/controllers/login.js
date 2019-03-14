@@ -1,6 +1,8 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import $ from "jquery";
+import { run } from "@ember/runloop";
+import config from "../config/environment";
 
 export default Controller.extend({
   isLoading: false,
@@ -99,7 +101,7 @@ export default Controller.extend({
         this._super(...arguments);
         this.set("isLoading", true);
         $.ajax({
-          url: "http://api.tstfy.co/users",
+          url: config.APP.baseURL + "/users",
           type: "POST",
           crossDomain: true,
           contentType: "application/json;charset=UTF-8",
@@ -114,7 +116,11 @@ export default Controller.extend({
         })
           .then(resp => {
             // handle your server response here
-            this.set("isLoading", false);
+            run(() => {
+              // begin loop
+              // Code that results in jobs being scheduled goes here
+              this.set("isLoading", false);
+            }); // end loop, jobs are flushed and executed
             if (!resp.employer_id) {
               throw JSON.stringify(JSON.stringify(resp));
             } else {

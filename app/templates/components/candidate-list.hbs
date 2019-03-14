@@ -1,34 +1,20 @@
-<script>
-  var clipboard = new ClipboardJS('.button');
-  clipboard.on('success', function (e) {
-    console.log(e);
-  });
-  clipboard.on('error', function (e) {
-    console.log(e);
-  });
-</script>
 <table class="table is-fullwidth is-hoverable is-centered is-narrow">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Full Name</th>
       <th>Email</th>
       <th>
-        <div id="ember253" class="flash-message alert alert-success active ember-view">
-          <p>Copied!</p>
-        </div>
         <abbr title="Git Repository Link">Git-Repo</abbr>
       </th>
       <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    {{#each candidates key="id" as |candidate|}}
-    <textarea style="display: none;" id="gitrepo">{{candidate.gitrepo}}</textarea>
-    {{#if (eq candidate.status '0')}}
-    <tr class="pending">
-      <td>{{candidate.user}}</td>
+    {{#each candidates as |candidate|}}
+    <tr class="candidate">
+      <td>{{candidate.f_name}} {{candidate.l_name}}</td>
       <td>{{candidate.email}}</td>
-      <a id="repo" class="button is-primary" data-clipboard-target="#gitrepo">
+      <a id="repo" class="button is-primary" {{action "copyToClipboard" candidate.repo_link}}>
         {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
         Copied!
         {{/ember-tooltip}}
@@ -49,72 +35,15 @@
             <option value="0">Pending</option>
             <option value="1">Accept</option>
             <option value="2" selected>Reject</option>
-            {{/if}}
-          </select>
-        </div>
-      </td>
-    </tr>
-    {{else if (eq candidate.status '1')}}
-    <tr class="accept">
-      <td>{{candidate.user}}</td>
-      <td>{{candidate.email}}</td>
-      <a id="repo" class="button is-primary" data-clipboard-target="#gitrepo">
-        {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
-        Copied!
-        {{/ember-tooltip}}
-        Copy
-      </a>
-      <td>
-        <div class="select">
-          <select>
-            {{#if (eq candidate.status '0')}}
+            {{else}}
             <option value="0" selected>Pending</option>
             <option value="1">Accept</option>
             <option value="2">Reject</option>
-            {{else if (eq candidate.status '1')}}
-            <option value="0">Pending</option>
-            <option value="1" selected>Accept</option>
-            <option value="2">Reject</option>
-            {{else if (eq candidate.status '2')}}
-            <option value="0">Pending</option>
-            <option value="1">Accept</option>
-            <option value="2" selected>Reject</option>
             {{/if}}
           </select>
         </div>
       </td>
     </tr>
-    {{else if (eq candidate.status '2')}}
-    <tr class="reject">
-      <td>{{candidate.user}}</td>
-      <td>{{candidate.email}}</td>
-      <a id="repo" class="button is-primary">
-        {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
-        Copied!
-        {{/ember-tooltip}}
-        Copy
-      </a>
-      <td>
-        <div class="select">
-          <select>
-            {{#if (eq candidate.status '0')}}
-            <option value="0" selected>Pending</option>
-            <option value="1">Accept</option>
-            <option value="2">Reject</option>
-            {{else if (eq candidate.status '1')}}
-            <option value="0">Pending</option>
-            <option value="1" selected>Accept</option>
-            <option value="2">Reject</option>
-            {{else if (eq candidate.status '2')}}
-            <option value="0">Pending</option>
-            <option value="1">Accept</option>
-            <option value="2" selected>Reject</option>
-            {{/if}}
-          </select>
-        </div>
-      </td>
-    </tr>
-    {{/if}}
     {{/each}}
   </tbody>
 </table>
