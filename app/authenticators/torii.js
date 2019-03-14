@@ -46,9 +46,20 @@ export default ToriiAuthenticator.extend({
           console.log("GITHUB response ", response);
           return {
             access_token: JSON.parse(response).access_token,
-            provider: data.provider
+            provider: data.provider,
+            user: response
           };
         });
+    });
+  },
+  invalidate(data) {
+    return new Promise(function(resolve, reject) {
+      console.log("github session: ", data);
+      if (data.access_token) {
+        resolve(data);
+      } else {
+        reject();
+      }
     });
   }
 });

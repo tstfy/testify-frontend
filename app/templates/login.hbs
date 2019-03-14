@@ -37,6 +37,7 @@
               class="button is-block is-info is-large is-fullwidth"
               {{action 'emailLogin' this.username this.password}}>Login </button>
             {{/if}}
+            <label class="label has-text-danger">{{this.error}} </label>
           </form>
           <div class="content">
             <p>or sign in with</p>

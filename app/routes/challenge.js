@@ -4,10 +4,18 @@ import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model(params) {
-    //return this.store.findRecord('challenge', params.challenge_id);
     return RSVP.hash({
-      challenge: this.store.findRecord("challenge", params.challenge_id),
-      candidates: this.store.findAll("candidate")
+      challenges: this.store
+        .findRecord(
+          "challenges",
+          this.session.data.authenticated.user.employer_id
+        )
+        .then(challenges => {
+          challenges.filter(challenge => {
+            return params.id === challenge.challengeid;
+          });
+        }),
+      candidates: this.store.findAll("candidates")
     });
   }
 });

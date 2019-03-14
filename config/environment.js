@@ -38,14 +38,14 @@ module.exports = function(environment) {
       "http://localhost:4200/home";
     ENV.torii.providers["github-oauth2"].tokenExchangeUri =
       process.env.DEV_TOKEN_EXCHANGE_URL;
-    ENV.APP.LOG_RESOLVER = true;
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
-    ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    ENV.APP.LOG_VIEW_LOOKUPS = true;
-	
-	ENV["ember-cli-mirage"] = {
-      enabled: false
+    ENV.APP.LOG_RESOLVER = false;
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_TRANSITIONS = false;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
+
+    ENV["ember-cli-mirage"] = {
+      enabled: true
     };
   }
 
@@ -64,8 +64,13 @@ module.exports = function(environment) {
   if (environment === "production") {
     // here you can enable a production-specific feature
     ENV["ember-cli-mirage"] = {
-      enabled: false
+      enabled: true
     };
+    ENV.APP.LOG_RESOLVER = false;
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_TRANSITIONS = false;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.torii.providers["github-oauth2"].apiKey =
       process.env.GITHUB_STAGING_CLIENT_ID;
     ENV.torii.providers["github-oauth2"].redirectUri =

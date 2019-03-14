@@ -5,8 +5,8 @@ export default function() {
 
   let challenges = [
     {
-      type: "challenge",
-      id: "facebook",
+      type: "challenges",
+      id: 1,
       attributes: {
         challengeid: "1",
         title: "Facebook Coding Challenge",
@@ -20,8 +20,8 @@ export default function() {
       }
     },
     {
-      type: "challenge",
-      id: "google",
+      type: "challenges",
+      id: 1,
       attributes: {
         challengeid: "2",
         title: "Google Coding Challenge",
@@ -35,8 +35,8 @@ export default function() {
       }
     },
     {
-      type: "challenge",
-      id: "amazon",
+      type: "challenges",
+      id: 1,
       attributes: {
         challengeid: "3",
         title: "Amazon Coding Challenge",
@@ -98,16 +98,9 @@ export default function() {
     }
   ];
 
-  this.get("/challenges", function(db, request) {
+  this.get("/challenges/", { eid: 2 }, function(db, request) {
     console.log(db, request);
     return { data: challenges };
-  });
-
-  this.get("/challenges/:id", function(db, request) {
-    console.log(db, request);
-    return {
-      data: challenges.find(challenge => request.params.id === challenge.id)
-    };
   });
 
   this.get("/candidates", function(db, request) {
@@ -118,9 +111,7 @@ export default function() {
   this.get("/candidates/:id", function(db, request) {
     console.log(db, request);
     return {
-      data: candidates.find(
-        candidate => request.params.id === candidate.attributes.challengeid
-      )
+      data: candidates
     };
   });
 }

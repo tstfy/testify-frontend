@@ -1,13 +1,10 @@
-import DS from 'ember-data';
+import DS from "ember-data";
 
 export default DS.Model.extend({
-   challengeid: DS.attr(),
-   title: DS.attr(),
-   owner: DS.attr(),
-   startdate: DS.attr(),
-   enddate: DS.attr(),
-   category: DS.attr(),
-   candidates: DS.attr(),
-   description: DS.attr(),
-   gitrepo: DS.attr()
+  challenge_id: DS.attr(),
+  title: DS.attr(),
+  employer_id: DS.attr(),
+  category: DS.attr(),
+  description: DS.attr(),
+  repo_link: DS.attr()
 });
