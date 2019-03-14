@@ -3,29 +3,29 @@
 <div class="container is-fluid" style="margin-top: 20px;">
   <div class="field is-horizontal">
     <p class="field-body">
-      <h1 class="title">{{this.model.challenge.title}}</h1>
+      <h1 class="title">{{model.challenges.title}}</h1>
     </p>
     <p class="field-label">
-      <a class="button create" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleUpdateChallenge'}}>
+      <a class="button create" style="border-color: transparent;box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
+        {{action 'toggleUpdateChallenge'}}>
         <span>Update</span>
       </a>
     </p>
   </div>
   <div class="tile is-ancestor">
-    <div class="tile is-vertical is-6">
+    <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-primary" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
-            <p class="subtitle">Owner: {{this.challenge.employer_id}} </p>
             <div class="detail type">
-              <span>Type:</span> {{this.model.challenge.category}}
+              <span>Type:</span> {{model.challenges.category}}
             </div>
-            <div class="detail bedrooms">
-              <span>Number of candidates:</span> {{this.model.candidates}}
+            <div class="detail candidates">
+              <span>Number of candidates:</span> {{model.candidates.length}}
             </div>
-            <div class="detail bedrooms">
+            <div class="detail repository">
               <span>Git Repository:</span>
-              <textarea class="textarea has-fixed-size" value="{{this.model.challenge.repo_link}}"
+              <textarea class="textarea has-fixed-size" value="{{model.challenges.repo_link}}"
                 placeholder="No Git repository created yet" rows="1" readonly></textarea>
             </div>
           </article>
@@ -33,9 +33,9 @@
       </div>
     </div>
   </div>
-  {{candidate-list candidates = this.model.candidates}}
+  {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") copyToClipboard=(action "copyToClipboard") candidates=model.candidates}}
   <p class="control">
-    <a class="button create is-pulled-right" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
+    <a class="button create is-pulled-right" style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
       {{action 'toggleNewCandidate'}}>
       <span>New Candidate</span>
     </a>
@@ -47,26 +47,27 @@
   {{#if showUpdateChallenge}}
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">Update Challenge</p>
+      <p class="modal-card-title">Update Challenge</p>
       <button class="delete" aria-label="close" {{action "toggleUpdateChallenge"}}></button>
     </header>
     <section class="modal-card-body">
       <div class="field">
         <label class="label">Title <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" type="text" value="{{this.model.title}}" placeholder="Challenge title" required>
+          <input class="input" type="text" value="{{model.challenge.title}}" placeholder="Challenge title" required>
         </div>
       </div>
       <div class="field">
         <label class="label">Description</label>
         <div class="control">
-          <textarea class="textarea" value="{{this.model.description}}" placeholder="Challenge description"></textarea>
+          <textarea class="textarea" value="{{model.challenge.description}}"
+            placeholder="Challenge description"></textarea>
         </div>
       </div>
       <div class="field">
         <label class="label">Type of Challenge</label>
         <div class="control">
-          <input class="input" type="text" value="{{this.model.category}}" placeholder="Challenge type">
+          <input class="input" type="text" value="{{model.challenge.category}}" placeholder="Challenge type">
         </div>
       </div>
       <!-- Using generic datepicker, no css implemented yet -->
@@ -74,13 +75,13 @@
         <div class="field">
           <label class="label">Start Date</label>
           <div class="control">
-            <input class="input" type="date" value="{{this.model.startdate}}" placeholder="Start date">
+            <input class="input" type="date" value="{{model.startdate}}" placeholder="Start date">
           </div>
         </div>
         <div class="field">
           <label class="label">End Date</label>
           <div class="control">
-            <input class="input" type="date" value="{{this.model.enddate}}" placeholder="End date">
+            <input class="input" type="date" value="{{model.enddate}}" placeholder="End date">
           </div>
         </div>
       </div> --}}
@@ -99,21 +100,37 @@
     </header>
     <section class="modal-card-body">
       <div class="field">
-        <label class="label">Username <span class="has-text-danger">*</span></label>
+        <label class="label">Candidate Email <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" type="text" placeholder="Username" required>
+          {{input value=email class="input" type="email" placeholder="Email address" required=true}}
         </div>
       </div>
       <div class="field">
-        <label class="label">Email Address <span class="has-text-danger">*</span></label>
+        <label class="label">First Name <span class="has-text-danger">*</span></label>
         <div class="control">
-          <input class="input" type="email" placeholder="Email address" required>
+          {{input value=f_name class="input" type="email" placeholder="First Name" required=true}}
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Last Name <span class="has-text-danger">*</span></label>
+        <div class="control">
+          {{input value=l_name class="input" type="email" placeholder="Last Name" required=true}}
         </div>
       </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button create" {{action "saveCandidate"}} type="submit">Save</button>
+      <button class="button create" {{action "newCandidate"}} type="submit">Save</button>
       <button class="button" {{action "toggleNewCandidate"}}>Cancel</button>
+      {{#if isLoading}}
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      {{else}}
+      <label class="label has-text-danger">{{error}} </label>
+      {{/if}}
     </footer>
   </div>
   {{/if}}
