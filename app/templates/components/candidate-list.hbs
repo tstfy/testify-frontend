@@ -15,40 +15,42 @@
     <tr class="candidate">
       <td>{{candidate.f_name}} {{candidate.l_name}}</td>
       <td>{{candidate.email}}</td>
-      <a id="repo" class="button is-primary" {{action "copyToClipboard" candidate.repo_link}}>
-        {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
-        Copied!
-        {{/ember-tooltip}}
-        Copy
-      </a>
+      <td>
+        <a id="repo" class="button is-primary" {{action "copyToClipboard" candidate.repo_link}}>
+          {{#ember-tooltip duration=1000 event='click' hideOn='mouseleave'}}
+          Copied!
+          {{/ember-tooltip}}
+          Copy
+        </a>
+      </td>
       <td>
         <div class="select">
-          <select>
-            {{#if (eq candidate.status '0')}}
-            <option value="0" selected>Pending</option>
-            <option value="1">Invited</option>
-            <option value="2">Accept</option>
-            <option value="3">Not Selected</option>
-            {{else if (eq candidate.status '1')}}
-            <option value="0">Pending</option>
-            <option value="1" selected>Invited</option>
-            <option value="2">Accept</option>
-            <option value="3">Not Selected</option>
-            {{else if (eq candidate.status '2')}}
-            <option value="0">Pending</option>
-            <option value="1">Invited</option>
-            <option value="2" selected>Accept</option>
-            <option value="3">Not Selected</option>
-            {{else if (eq candidate.status '3')}}
-            <option value="0" selected>Pending</option>
-            <option value="1">Invited</option>
-            <option value="2">Accept</option>
-            <option value="3" selected>Not Selected</option>
+          <select onchange={{action 'statusChanged' challenge_id candidate.candidate_id content=selected.target.value}}>
+            {{#if (eq candidate.status 0)}}
+            <option value="CREATED" selected disabled>Created</option>
+            <option value="INVITED" disabled>Invited</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="ACCEPTED">Accepted</option>
+            {{else if (eq candidate.status 1)}}
+            <option value="CREATED" disabled>Created</option>
+            <option value="INVITED" selected disabled>Invited</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="ACCEPTED">Accepted</option>
+            {{else if (eq candidate.status 2)}}
+            <option value="CREATED" disabled>Created</option>
+            <option value="INVITED" disabled>Invited</option>
+            <option value="REJECTED" selected>Rejected</option>
+            <option value="ACCEPTED">Accepted</option>
+            {{else if (eq candidate.status 3)}}
+            <option value="CREATED" disabled>Created</option>
+            <option value="INVITED" disabled>Invited</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="ACCEPTED" selected>Accepted</option>
             {{else}}
-            <option value="0" selected>Pending</option>
-            <option value="1">Invited</option>
-            <option value="2">Accept</option>
-            <option value="3">Not Selected</option>
+            <option value="CREATED" disabled selected>Created</option>
+            <option value="INVITED" disabled>Invited</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="ACCEPTED">Accepted</option>
             {{/if}}
           </select>
         </div>
@@ -56,14 +58,14 @@
       <td>
         {{#if (eq candidate.status 0)}}
         <p class="control" id="invite-{{candidate.candidate_id}}"
-          {{action "inviteCandidate" candidate.candidate_id employer_id}}>
+          {{action "inviteCandidate" candidate employer_id challenge_id}}>
           <a class="button create is-pulled-right"
             style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
             <span>Invite</span>
           </a>
         </p>
         {{else}}
-        <p class="control" id="invite-{{candidate.candidate_id}}">
+        <p class="control" id="invite-{{candidate}}">
           <a class="button create is-pulled-right"
             style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" disabled>
             <span>Invite</span>
@@ -75,3 +77,5 @@
     {{/each}}
   </tbody>
 </table>
+
+<div id="snackbar">{{snackText}}</div>

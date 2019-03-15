@@ -12,16 +12,23 @@
 </script>
 
 <div class="container is-fluid" style="margin-top: 20px;">
+  {{#if (eq model.length 0)}}
+  <p class="title">
+
+    <a>You do not have any challenges right now. <br>
+      You can create a new challenge by clicking the top left button
+      "New Challenge"!</a>
+  </p>
+  {{else}}
   {{#each model as |challenge|}}
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
+          {{#link-to 'challenge' session.data.authenticated.user.employer_id challenge.challenge_id}}
           <article class="tile is-child notification is-primary" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
             <p class="title">
-              {{#link-to 'challenge' session.data.authenticated.user.employer_id challenge.challenge_id}}
               <a>{{challenge.title}}</a>
-              {{/link-to}}
             </p>
             <p class="subtitle">Owner: {{session.data.authenticated.user.f_name}}
               {{session.data.authenticated.user.l_name}} </p>
@@ -38,11 +45,13 @@
               </textarea>
             </div>
           </article>
+          {{/link-to}}
         </div>
       </div>
     </div>
   </div>
   {{/each}}
+  {{/if}}
   <div id="cookieConsent">
     <div id="closeCookieConsent">x</div>
     This website is using cookies. <a href="#" target="_blank">More info</a>. <a class="cookieConsentOK">That's Fine</a>

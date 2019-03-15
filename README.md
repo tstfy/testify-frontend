@@ -13,27 +13,11 @@ You will need the following things properly installed on your computer.
 
 - `git clone <repository-url>` this repository
 - `cd testify`
-- `npm install`
 
 ## Deploy the app
 
 - `npm run dev`
 - `npm run prod`
-
-### Running Tests
-
-- `npm test`
-- `ember test --server`
-
-### Linting
-
-- `npm run lint:js`
-- `npm run lint:js -- --fix`
-
-### Building
-
-- `ember build` (development)
-- `ember build --environment production` (production)
 
 ## Further Reading / Useful Links
 

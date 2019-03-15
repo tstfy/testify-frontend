@@ -13,27 +13,21 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu {{if showMenu "is-active"}}">
     <div class="navbar-start">
-      <a class="navbar-item">
-        {{#if session.isAuthenticated}}
-        {{#link-to 'home' session.data.authenticated.user.employer_id}}
-        Home
-        {{/link-to}}
-        {{else}}
-        {{#link-to 'login'}}
-        Home
-        {{/link-to}}
-        {{/if}}
-      </a>
-      <a class="navbar-item">
-        {{#link-to "about"}}
-        About
-        {{/link-to}}
-      </a>
-      <a class="navbar-item">
-        {{#link-to "contact"}}
-        Contact
-        {{/link-to}}
-      </a>
+      {{#if session.isAuthenticated}}
+      {{#link-to 'home' session.data.authenticated.user.employer_id class="navbar-item"}}
+      Home
+      {{/link-to}}
+      {{else}}
+      {{#link-to 'login' class="navbar-item"}}
+      Home
+      {{/link-to}}
+      {{/if}}
+      {{#link-to "about" class="navbar-item"}}
+      About
+      {{/link-to}}
+      {{#link-to "contact" class="navbar-item"}}
+      Contact
+      {{/link-to}}
       {{#if session.isAuthenticated}}
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -66,7 +60,7 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="field is-grouped">
-        <p class="control">
+        <p>
           <a class="button create" style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewChallenge'}}>
             <span>New Challenge</span>
           </a>

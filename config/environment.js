@@ -47,7 +47,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV["ember-cli-mirage"] = {
-      enabled: true
+      enabled: false
     };
   }
 
@@ -66,7 +66,7 @@ module.exports = function(environment) {
   if (environment === "production") {
     // here you can enable a production-specific feature
     ENV["ember-cli-mirage"] = {
-      enabled: true
+      enabled: false
     };
     ENV.APP.LOG_RESOLVER = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;

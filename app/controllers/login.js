@@ -35,7 +35,9 @@ export default Controller.extend({
         this.first_name &&
         this.last_name &&
         this.company &&
-        this.email
+        this.email &&
+        this.password === this.confirm_password &&
+        this.password.length >= 6
       ) {
         this.set("signupValid", true);
       } else {
@@ -83,14 +85,14 @@ export default Controller.extend({
             })
             .catch(() => {
               this.set("isLoading", false);
-              this.set("error", "Incorrect Username/Password");
+              this.send("snackText", "Incorrect Username/Password!");
             });
         }
       } else {
         run(() => {
           // begin loop
           // Code that results in jobs being scheduled goes here
-          this.set("error", "Please leave no fields blank");
+          this.send("snackText", "Please make sure all fields are correct!");
         }); // end loop, jobs are flushed and executed
       }
     },
@@ -137,11 +139,26 @@ export default Controller.extend({
             // handle errors here
             console.log("Sign Up Failed: ", JSON.parse(error));
             this.set("isLoading", false);
-            this.set("error", JSON.parse(error));
+            this.send("snackText", JSON.parse(error));
           });
       } else {
-        this.set("error", "Please leave no fields blank");
+        run(() => {
+          // begin loop
+          // Code that results in jobs being scheduled goes here
+          this.send("snackText", "Please make sure all fields are correct!");
+        }); // end loop, jobs are flushed and executed
       }
+    },
+    snackText(text) {
+      var x = document.getElementById("snackbar");
+      this.set("error", text);
+      // Add the "show" class to DIV
+      x.className = "show has-text-danger";
+
+      // After 3 seconds, remove the show class from DIV
+      setTimeout(function() {
+        x.className = x.className.replace("show", "");
+      }, 3000);
     }
   }
 });

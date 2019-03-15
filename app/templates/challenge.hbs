@@ -5,12 +5,12 @@
     <p class="field-body">
       <h1 class="title">{{model.challenges.title}}</h1>
     </p>
-    <p class="field-label">
+    {{!-- <p class="field-label">
       <a class="button create" style="border-color: transparent;box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
         {{action 'toggleUpdateChallenge'}}>
         <span>Update</span>
       </a>
-    </p>
+    </p> --}}
   </div>
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
@@ -28,6 +28,9 @@
               <textarea class="textarea has-fixed-size tooltip" data-tooltip="User your Testify Credentials!"
                 value="git clone &quot;{{model.challenges.repo_link}}&quot;"
                 placeholder=" No Git repository created yet" rows="1" readonly>
+                {{#ember-tooltip duration=1000 event='mouseover' hideOn='mouseleave'}}
+                User your Testify Credentials!
+                {{/ember-tooltip}}
               </textarea>
             </div>
           </article>
@@ -35,7 +38,11 @@
       </div>
     </div>
   </div>
-  {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") employer_id=model.challenges.employer_id candidates=model.candidates}}
+  {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") challenge_id=model.challenges.challenge_id employer_id=model.challenges.employer_id candidates=model.candidates}}
+  {{#if (eq model.candidates.length 0)}}
+  There are no candidates added to this challenge yet.
+  Please add them by clicking "New Candidate"
+  {{/if}}
   <div style="display:flex; flex-direction:column">
     <p class="control">
       <a class="button create is-pulled-right"

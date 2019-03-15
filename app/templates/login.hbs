@@ -37,7 +37,6 @@
               class="button is-block is-info is-large is-fullwidth"
               {{action 'emailLogin' this.username this.password}}>Login </button>
             {{/if}}
-            <label class="label has-text-danger">{{this.error}} </label>
           </form>
           {{!-- <div class="content">
             <p>or sign in with</p>
@@ -108,7 +107,7 @@
         </div>
       </div>
       <div class="field">
-        <label class="label">Company</label>
+        <label class="label">Company <span class="has-text-danger">*</span></label>
         <div class="control">
           {{input value=this.company class="input" placeholder="Company" required=true}}
         </div>
@@ -132,4 +131,6 @@
     </footer>
   </div>
 </div>
+
+<div id="snackbar">{{this.error}}</div>
 <!--  modal -->
