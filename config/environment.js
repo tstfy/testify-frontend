@@ -28,8 +28,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      baseURL: "https://api-master.tstfy.co"
-      // baseURL: "https://api.tstfy.co"
+      // baseURL: "https://api-master.tstfy.co"
+      baseURL: "https://api.tstfy.co"
     }
   };
 

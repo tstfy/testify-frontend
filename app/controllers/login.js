@@ -83,7 +83,7 @@ export default Controller.extend({
             })
             .catch(reason => {
               this.set("isLoading", false);
-              alert(reason);
+              this.set("error", "Incorrect Username/Password");
             });
         }
       } else {

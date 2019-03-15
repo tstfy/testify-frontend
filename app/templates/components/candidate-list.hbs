@@ -7,6 +7,7 @@
         <abbr title="Git Repository Link">Git-Repo</abbr>
       </th>
       <th>Status</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -26,22 +27,30 @@
             {{#if (eq candidate.status '0')}}
             <option value="0" selected>Pending</option>
             <option value="1">Accept</option>
-            <option value="2">Reject</option>
+            <option value="2">Not Selected</option>
             {{else if (eq candidate.status '1')}}
             <option value="0">Pending</option>
             <option value="1" selected>Accept</option>
-            <option value="2">Reject</option>
+            <option value="2">Not Selected</option>
             {{else if (eq candidate.status '2')}}
             <option value="0">Pending</option>
             <option value="1">Accept</option>
-            <option value="2" selected>Reject</option>
+            <option value="2" selected>Not Selected</option>
             {{else}}
             <option value="0" selected>Pending</option>
             <option value="1">Accept</option>
-            <option value="2">Reject</option>
+            <option value="2">Not Selected</option>
             {{/if}}
           </select>
         </div>
+      </td>
+      <td>
+        <p class="control">
+          <a class="button create is-pulled-right"
+            style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewCandidate'}}>
+            <span>Invite</span>
+          </a>
+        </p>
       </td>
     </tr>
     {{/each}}

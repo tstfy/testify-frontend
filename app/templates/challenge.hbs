@@ -25,8 +25,10 @@
             </div>
             <div class="detail repository">
               <span>Git Repository:</span>
-              <textarea class="textarea has-fixed-size" value="{{model.challenges.repo_link}}"
-                placeholder="No Git repository created yet" rows="1" readonly></textarea>
+              <textarea class="textarea has-fixed-size tooltip" data-tooltip="User your Testify Credentials!"
+                value="git clone &quot;{{model.challenges.repo_link}}&quot;"
+                placeholder=" No Git repository created yet" rows="1" readonly>
+              </textarea>
             </div>
           </article>
         </div>
@@ -34,12 +36,20 @@
     </div>
   </div>
   {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") copyToClipboard=(action "copyToClipboard") candidates=model.candidates}}
-  <p class="control">
-    <a class="button create is-pulled-right" style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
-      {{action 'toggleNewCandidate'}}>
-      <span>New Candidate</span>
-    </a>
-  </p>
+  <div style="display:flex; flex-direction:column">
+    <p class="control">
+      <a class="button create is-pulled-right"
+        style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewCandidate'}}>
+        <span>New Candidate</span>
+      </a>
+    </p>
+    <p class="control">
+      <a class="button create is-pulled-right"
+        style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewCandidate'}}>
+        <span>Invite All</span>
+      </a>
+    </p>
+  </div>
 </div>
 <!-- modal -->
 <div class="modal {{if showModalChallenge "is-active"}}">

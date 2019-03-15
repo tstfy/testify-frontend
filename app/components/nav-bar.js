@@ -49,7 +49,7 @@ export default Component.extend({
         data: JSON.stringify({
           description: description,
           category: category,
-          employer: employer,
+          employer: this.session.data.authenticated.user.employer_id,
           title: title
         })
       })

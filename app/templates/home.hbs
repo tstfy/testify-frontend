@@ -23,17 +23,19 @@
               <a>{{challenge.title}}</a>
               {{/link-to}}
             </p>
-            <p class="subtitle">Owner: {{challenge.employer_id}} </p>
+            <p class="subtitle">Owner: {{session.data.authenticated.user.f_name}}
+              {{session.data.authenticated.user.l_name}} </p>
             <div class="detail category">
               <span>Type:</span> {{challenge.category}}
             </div>
-            <div class="detail candidates">
-              <span>Number of candidates:</span> {{challenge.candidates}}
-            </div>
             <div class="detail gitrepo">
               <span>Git Repository:</span>
-              <textarea class="textarea has-fixed-size" value={{challenge.repo_link}}
-                placeholder="No Git repository created yet" rows="1" readonly></textarea>
+              <textarea class="textarea has-fixed-size" value="git clone &quot;{{challenge.repo_link}}&quot;"
+                placeholder=" No Git repository created yet" rows="1" readonly>
+                {{#ember-tooltip duration=1000 event='mouseover' hideOn='mouseleave'}}
+                User your Testify Credentials!
+                {{/ember-tooltip}}
+              </textarea>
             </div>
           </article>
         </div>
