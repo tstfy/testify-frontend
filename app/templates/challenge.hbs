@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") copyToClipboard=(action "copyToClipboard") candidates=model.candidates}}
+  {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") employer_id=model.challenges.employer_id candidates=model.candidates}}
   <div style="display:flex; flex-direction:column">
     <p class="control">
       <a class="button create is-pulled-right"
@@ -45,7 +45,8 @@
     </p>
     <p class="control">
       <a class="button create is-pulled-right"
-        style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewCandidate'}}>
+        style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
+        {{action 'inviteAllCandidates' model.candidates}}>
         <span>Invite All</span>
       </a>
     </p>
