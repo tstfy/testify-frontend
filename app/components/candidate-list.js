@@ -81,7 +81,7 @@ export default Component.extend({
         crossDomain: true,
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
-          status: status.target.value
+          status: status.target.value.toLowerCase()
         })
       })
         .then((resp, textStatus, xhr) => {

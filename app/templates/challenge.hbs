@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  {{candidate-list refreshCurrentRoute=(route-action "refreshCurrentRoute") challenge_id=model.challenges.challenge_id employer_id=model.challenges.employer_id candidates=model.candidates}}
+  {{candidate-list snackText=snackText refreshCurrentRoute=(route-action "refreshCurrentRoute") challenge_id=model.challenges.challenge_id employer_id=model.challenges.employer_id candidates=model.candidates}}
   {{#if (eq model.candidates.length 0)}}
   There are no candidates added to this challenge yet.
   Please add them by clicking "New Candidate"
@@ -59,6 +59,7 @@
     </p>
   </div>
 </div>
+
 <!-- modal -->
 <div class="modal {{if showModalChallenge "is-active"}}">
   <div class="modal-background"></div>
