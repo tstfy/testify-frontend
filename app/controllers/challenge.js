@@ -69,7 +69,7 @@ export default Controller.extend({
     },
     newCandidate() {
       this._super(...arguments);
-      console.log(this.model.candidates);
+      console.log(this.model);
       let { email, f_name, l_name } = this.getProperties(
         "email",
         "f_name",
@@ -105,7 +105,7 @@ export default Controller.extend({
             throw JSON.stringify(`Add Candidate Failed: ${resp}`);
           } else {
             this.send("toggleNewCandidate");
-            this.send("refreshModel");
+            this.send("refreshModel", this.model.challenges.challenge_id);
           }
         })
         .catch(error => {
@@ -123,21 +123,22 @@ export default Controller.extend({
       document.execCommand("copy");
       document.body.removeChild(dummyElement);
     },
-    refreshModel: function() {
+    refreshModel: function(challengeid) {
       this._super(...arguments);
       $.ajax({
-        url:
-          config.APP.baseURL +
-          "/challenges/candidates?cid=" +
-          this.model.challenges.challenge_id,
+        url: config.APP.baseURL + "/challenges/candidates?cid=" + challengeid,
         type: "GET",
         crossDomain: true,
         contentType: "application/json;charset=UTF-8"
       })
         .then(resp => {
-          this.set("num_candidates", resp.data.length);
-          console.log("num_candidates ", this.num_candidates);
-          this.get("store").pushPayload("candidate", resp);
+          run(() => {
+            // begin loop
+            // Code that results in jobs being scheduled goes here
+            this.set("num_candidates", resp.data.length);
+            console.log("num_candidates ", this.num_candidates);
+            this.get("store").pushPayload("candidate", resp);
+          }); // end loop, jobs are flushed and executed
         })
         .catch(error => {
           // handle errors here

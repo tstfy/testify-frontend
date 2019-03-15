@@ -81,13 +81,17 @@ export default Controller.extend({
                 );
               }
             })
-            .catch(reason => {
+            .catch(() => {
               this.set("isLoading", false);
               this.set("error", "Incorrect Username/Password");
             });
         }
       } else {
-        this.set("error", "Please leave no fields blank");
+        run(() => {
+          // begin loop
+          // Code that results in jobs being scheduled goes here
+          this.set("error", "Please leave no fields blank");
+        }); // end loop, jobs are flushed and executed
       }
     },
     toggleSignUp() {

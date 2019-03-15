@@ -12,7 +12,9 @@
 .table tr.reject:hover {
   background-color: #ff8080;
 }
-
+.control {
+  margin-bottom: 10px;
+}
 .pending {
   background-color: #ffff99;
 }
