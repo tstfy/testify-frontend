@@ -10,6 +10,13 @@ export default Route.extend(AuthenticatedRouteMixin, {
   actions: {
     refreshCurrentRoute() {
       this.refresh();
+    },
+    goToChallenge(challenge_id) {
+      this.transitionTo(
+        "challenge",
+        this.session.data.authenticated.user.employer_id,
+        challenge_id
+      );
     }
   }
 });

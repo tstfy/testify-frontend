@@ -1,4 +1,4 @@
-{{nav-bar refreshCurrentRoute=(route-action "refreshCurrentRoute")}}
+{{nav-bar goToChallenge=(route-action "goToChallenge") refreshCurrentRoute=(route-action "refreshCurrentRoute")}}
 
 <script>
   $(document).ready(function () {
@@ -39,7 +39,7 @@
               <span>Git Repository:</span>
               <textarea class="textarea has-fixed-size" value="git clone &quot;{{challenge.repo_link}}&quot;"
                 placeholder=" No Git repository created yet" rows="1" readonly>
-                {{#ember-tooltip duration=1000 event='mouseover' hideOn='mouseleave'}}
+                {{#ember-tooltip duration=10000 event='mouseover' hideOn='mouseleave'}}
                 User your Testify Credentials!
                 {{/ember-tooltip}}
               </textarea>

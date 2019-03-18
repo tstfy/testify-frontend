@@ -1,4 +1,4 @@
-{{nav-bar}}
+{{nav-bar goToChallenge=(route-action "goToChallenge") refreshCurrentRoute=(route-action "refreshCurrentRoute")}}
 
 <div class="container is-fluid" style="margin-top: 20px;">
   <div class="field is-horizontal">
@@ -25,10 +25,10 @@
             </div>
             <div class="detail repository">
               <span>Git Repository:</span>
-              <textarea class="textarea has-fixed-size tooltip" data-tooltip="User your Testify Credentials!"
+              <textarea class="textarea has-fixed-size tooltip" data-tooltip="Use Testify Credentials!"
                 value="git clone &quot;{{model.challenges.repo_link}}&quot;"
                 placeholder=" No Git repository created yet" rows="1" readonly>
-                {{#ember-tooltip duration=1000 event='mouseover' hideOn='mouseleave'}}
+                {{#ember-tooltip duration=10000 event='mouseover' hideOn='mouseleave'}}
                 User your Testify Credentials!
                 {{/ember-tooltip}}
               </textarea>

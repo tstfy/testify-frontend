@@ -68,6 +68,7 @@ export default Component.extend({
             this.toggleProperty("showNewChallenge");
             this.send("clearFields");
             this.refreshCurrentRoute();
+            this.goToChallenge(resp.challenge_id);
           }
         })
         .catch(error => {
