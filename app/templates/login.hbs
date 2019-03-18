@@ -1,5 +1,35 @@
+<script>
+  $(function () {
+    $('#password').keyup(function () {
+
+      var pass_val = $('#password').val();
+      var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+
+      var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+
+      var okRegex = new RegExp("(?=.{6,}).*", "g");
+
+      if (okRegex.test(pass_val) === false) {
+        $('.bar').addClass('weak');
+      } else if (strongRegex.test(pass_val)) {
+        $('.bar').addClass('strong');
+      } else if (mediumRegex.test(pass_val)) {
+        $('.bar').addClass('medium');
+      } else {
+        $('.bar').addClass('medium');
+      }
+
+
+    });
+    $('#password').blur(function () {
+      $('.bar').removeClass('medium');
+      $('.bar').removeClass('weak');
+      $('.bar').removeClass('strong');
+    });
+  });
+</script>
+{{nav-bar}}
 <section class="hero is-dark is-fullheight">
-  {{nav-bar}}
   <div class="hero-body">
     <div class="container has-text-centered">
       <div class="column is-4 is-offset-4">
@@ -12,7 +42,7 @@
           <form id="login-form">
             <div class="field">
               <div class="control">
-                {{input value=this.username class="input is-large" type="email" placeholder="Username" autofocus=""}}
+                {{input value=this.username class="input is-large" type="email" placeholder="Username" autofocus="true"}}
               </div>
             </div>
 
@@ -72,7 +102,7 @@
       <div class="field">
         <label class="label">Username <span class="has-text-danger">*</span></label>
         <div class="control">
-          {{input value=this.username class="input" placeholder="Username" autofocus="" required=true}}
+          {{input value=this.username class="input" placeholder="Username" autofocus="true" required=true}}
         </div>
       </div>
       <div class="field">
@@ -84,9 +114,17 @@
       <div class="field">
         <label class="label">Password <span class="has-text-danger">*</span></label>
         <div class="control">
-          {{input value=this.password class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required=true}}
+          {{input id="password" value=this.password focusIn=focused class="input" type="password" minlength="6" maxlength="20" placeholder="Password" required=true}}
+          <div class="bar"></div>
         </div>
-        <label class="label"><span class="has-text-danger is-size-7">6 or more characters</span></label>
+        {{#ember-tooltip class="has-text-danger is-size-7" duration=1000000000 event='mouseover' hideOn='mouseleave'}}
+        must contain at least 1 lowercase alphabetical character <br>
+        must contain at least 1 uppercase alphabetical character
+        must contain at least 1 numeric character
+        must contain at least one special character
+        must be 6 characters or longer
+        {{/ember-tooltip}}
+        {{!-- <label class="label"><span class="has-text-danger is-size-7">6 or more characters</span></label> --}}
       </div>
       <div class="field">
         <label class="label">Confirm Password <span class="has-text-danger">*</span></label>
@@ -114,9 +152,7 @@
       </div>
     </section>
     <footer class="modal-card-foot">
-
-      <button class="button is-success tooltip" data-tooltip="User your Testify Credentials!" {{action "createUser"}}
-        type="submit">
+      <button class="button is-success tooltip" {{action "createUser"}} type="submit">
         Sign Up
       </button>
       <button class="button" {{action "toggleSignUp"}}>Cancel </button>

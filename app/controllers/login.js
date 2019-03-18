@@ -16,6 +16,24 @@ export default Controller.extend({
   company: "",
   error: "",
   session: service(),
+  validUsername(username) {
+    const usernameRegex = RegExp(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/);
+    return usernameRegex.test(username);
+  },
+  validEmail(email) {
+    const emailRegex = RegExp(
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    );
+    return emailRegex.test(email);
+  },
+  validPassword(password) {
+    const passwordRegex = new RegExp("(?=.{6,}).*", "g");
+    return passwordRegex.test(password);
+  },
+  validConfirmPassword(password, confirm_password) {
+    const passwordRegex = new RegExp("(?=.{6,}).*", "g");
+    return passwordRegex.test(confirm_password) && password == confirm_password;
+  },
   actions: {
     clearFields() {
       this.set("username", "");
@@ -28,20 +46,35 @@ export default Controller.extend({
       this.set("error", "");
     },
     validateSignUpFields() {
-      if (
-        this.username &&
-        this.password &&
-        this.confirm_password &&
-        this.first_name &&
-        this.last_name &&
-        this.company &&
-        this.email &&
-        this.password === this.confirm_password &&
-        this.password.length >= 6
-      ) {
-        this.set("signupValid", true);
-      } else {
+      if (!this.validUsername(this.username)) {
         this.set("signupValid", false);
+        this.set("error", "Username Invalid");
+      } else if (!this.validEmail(this.email)) {
+        this.set("signupValid", false);
+        this.set("error", "Invalid Email");
+      } else if (!this.validPassword(this.password)) {
+        this.set("signupValid", false);
+        this.set("error", "Invalid Password");
+      } else if (
+        !this.validConfirmPassword(this.password, this.confirm_password)
+      ) {
+        this.set("signupValid", false);
+        this.set("error", "Invalid Confirm Password");
+      } else if (
+        !(
+          this.username &&
+          this.password &&
+          this.company &&
+          this.confirm_password &&
+          this.first_name &&
+          this.last_name &&
+          this.email
+        )
+      ) {
+        this.set("signupValid", false);
+        this.set("error", "Please make sure all fields are correct!");
+      } else {
+        this.set("signupValid", true);
       }
     },
     validateLoginFields() {
@@ -104,6 +137,7 @@ export default Controller.extend({
       // POST users
       this.send("validateSignUpFields");
       if (this.signupValid) {
+        this.set("error", "");
         this._super(...arguments);
         this.set("isLoading", true);
         $.ajax({
@@ -145,7 +179,7 @@ export default Controller.extend({
         run(() => {
           // begin loop
           // Code that results in jobs being scheduled goes here
-          this.send("snackText", "Please make sure all fields are correct!");
+          this.send("snackText", this.error);
         }); // end loop, jobs are flushed and executed
       }
     },
