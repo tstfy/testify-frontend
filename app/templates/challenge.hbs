@@ -1,6 +1,6 @@
 {{nav-bar goToChallenge=(route-action "goToChallenge") refreshCurrentRoute=(route-action "refreshCurrentRoute")}}
 
-<div class="container is-fluid" style="margin-top: 20px;">
+<div class="container is-fluid animated fadeInRight" style="margin-top: 20px;">
   <div class="field is-horizontal">
     <p class="field-body">
       <h1 class="title">{{model.challenges.title}}</h1>
@@ -61,7 +61,7 @@
 </div>
 
 <!-- modal -->
-<div class="modal {{if showModalChallenge "is-active"}}">
+<div class="modal animated fadeIn {{if showModalChallenge "is-active"}}">
   <div class="modal-background"></div>
   {{#if showUpdateChallenge}}
   <div class="modal-card">
@@ -112,7 +112,7 @@
   </div>
   {{/if}}
   {{#if showNewCandidate}}
-  <div class="modal-card">
+  <div class="modal-card animated fadeIn">
     <header class="modal-card-head">
       <p class="modal-card-title">Create Candidate</p>
       <button class="delete" aria-label="close" {{action "toggleNewCandidate"}}></button>

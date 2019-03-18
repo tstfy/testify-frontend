@@ -47,48 +47,56 @@ export default Controller.extend({
         "l_name"
       );
       console.log("Add Candidate: ", email, f_name, l_name);
-      this.set("isLoading", true);
-      $.ajax({
-        url:
-          config.APP.baseURL +
-          `/challenges/${this.model.challenges.challenge_id}/candidates`,
-        type: "POST",
-        crossDomain: true,
-        contentType: "application/json;charset=UTF-8",
-        data: JSON.stringify({
-          email: email,
-          f_name: f_name,
-          l_name: l_name,
-          eid: this.session.data.authenticated.user.employer_id
+      if (
+        this.validName(f_name) &&
+        this.validName(l_name) &&
+        this.validEmail(email)
+      ) {
+        this.set("isLoading", true);
+        $.ajax({
+          url:
+            config.APP.baseURL +
+            `/challenges/${this.model.challenges.challenge_id}/candidates`,
+          type: "POST",
+          crossDomain: true,
+          contentType: "application/json;charset=UTF-8",
+          data: JSON.stringify({
+            email: email,
+            f_name: f_name,
+            l_name: l_name,
+            eid: this.session.data.authenticated.user.employer_id
+          })
         })
-      })
-        .then((resp, textStatus, xhr) => {
-          // handle your server response here
-          run(() => {
-            // begin loop
-            // Code that results in jobs being scheduled goes here
+          .then((resp, textStatus, xhr) => {
+            // handle your server response here
+            run(() => {
+              // begin loop
+              // Code that results in jobs being scheduled goes here
+              this.set("isLoading", false);
+              console.log("Add Candidate Response: ", resp, textStatus, xhr);
+            }); // end loop, jobs are flushed and executed
+            if (!resp[0].last_modified) {
+              throw JSON.stringify(`Add Candidate Failed: ${resp}`);
+            } else {
+              this.send("toggleNewCandidate");
+              this.send("clearFields");
+              this.send("snackText", `Added Candidate ${f_name} ${l_name}`);
+              this.send("refreshModel", this.model.challenges.challenge_id);
+            }
+          })
+          .catch(error => {
+            // handle errors here
             this.set("isLoading", false);
-            console.log("Add Candidate Response: ", resp, textStatus, xhr);
-          }); // end loop, jobs are flushed and executed
-          if (!resp[0].last_modified) {
-            throw JSON.stringify(`Add Candidate Failed: ${resp}`);
-          } else {
-            this.send("toggleNewCandidate");
-            this.send("clearFields");
-            this.send("snackText", `Added Candidate ${f_name} ${l_name}`);
-            this.send("refreshModel", this.model.challenges.challenge_id);
-          }
-        })
-        .catch(error => {
-          // handle errors here
-          this.set("isLoading", false);
-          this.set("error", JSON.parse(error));
-          this.send(
-            "snackText",
-            `Failed to Add Candidate ${JSON.parse(error)}`
-          );
-          console.log("Add Candidate Error: ", JSON.parse(error));
-        });
+            this.set("error", JSON.parse(error));
+            this.send(
+              "snackText",
+              `Failed to Add Candidate ${JSON.parse(error)}`
+            );
+            console.log("Add Candidate Error: ", JSON.parse(error));
+          });
+      } else {
+        this.set("error", "Please make sure all fields are valid!");
+      }
     },
     inviteAllCandidates(candidates) {
       let invites = [];

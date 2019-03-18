@@ -1,13 +1,17 @@
-'use strict';
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    sassOptions: {
+      extension: "scss"
+    }
     // Add options here
   });
 
-  app.import('vendor/testify.css');
+  app.import("vendor/testify.css");
+  // app.import("vendor/testify.scss");
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
