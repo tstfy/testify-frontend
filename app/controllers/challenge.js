@@ -11,6 +11,16 @@ export default Controller.extend({
   showUpdateChallenge: false,
   showNewCandidate: false,
   session: service(),
+  validName(name) {
+    const nameRegex = new RegExp(/^[a-zA-z0-9- ,.'-]+$/);
+    return nameRegex.test(name);
+  },
+  validEmail(email) {
+    const emailRegex = RegExp(
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    );
+    return emailRegex.test(email);
+  },
   actions: {
     toggleUpdateChallenge() {
       this.toggleProperty("showModalChallenge");
@@ -48,7 +58,8 @@ export default Controller.extend({
         data: JSON.stringify({
           email: email,
           f_name: f_name,
-          l_name: l_name
+          l_name: l_name,
+          eid: this.session.data.authenticated.user.employer_id
         })
       })
         .then((resp, textStatus, xhr) => {

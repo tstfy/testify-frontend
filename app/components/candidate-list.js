@@ -94,10 +94,7 @@ export default Component.extend({
           if (xhr.status != 200) {
             throw JSON.stringify(`Updated Status Failed: ${resp}`);
           } else {
-            this.send(
-              "snackText",
-              `Updated Status For ${candidate.f_name} ${candidate.l_name}`
-            );
+            this.send("snackText", `Updated Status`);
             this.refreshCurrentRoute();
           }
         })

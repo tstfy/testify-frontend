@@ -34,6 +34,10 @@ export default Controller.extend({
     const passwordRegex = new RegExp("(?=.{6,}).*", "g");
     return passwordRegex.test(confirm_password) && password == confirm_password;
   },
+  validName(name) {
+    const nameRegex = new RegExp(/^[a-zA-z0-9- ,.'-]+$/);
+    return nameRegex.test(name);
+  },
   actions: {
     clearFields() {
       this.set("username", "");
@@ -60,6 +64,15 @@ export default Controller.extend({
       ) {
         this.set("signupValid", false);
         this.set("error", "Invalid Confirm Password");
+      } else if (!this.validName(this.first_name)) {
+        this.set("signupValid", false);
+        this.set("error", "Invalid First Name");
+      } else if (!this.validName(this.last_name)) {
+        this.set("signupValid", false);
+        this.set("error", "Invalid Last Name");
+      } else if (!this.validName(this.company)) {
+        this.set("signupValid", false);
+        this.set("error", "Invalid Company Name");
       } else if (
         !(
           this.username &&
