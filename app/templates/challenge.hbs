@@ -23,6 +23,10 @@
             <div class="detail candidates">
               <span>Number of candidates:</span> {{model.candidates.length}}
             </div>
+            <div class="detail description">
+              <span>Description:</span>
+              <textarea class="textarea has-fixed-size tooltip" value={{model.challenges.description}}></textarea>
+            </div>
             <div class="detail repository">
               <span>Git Repository:</span>
               <textarea class="textarea has-fixed-size tooltip" data-tooltip="Use Testify Credentials!"
@@ -38,12 +42,12 @@
       </div>
     </div>
   </div>
-  {{candidate-list snackText=snackText refreshCurrentRoute=(route-action "refreshCurrentRoute") challenge_id=model.challenges.challenge_id employer_id=model.challenges.employer_id candidates=model.candidates}}
+  {{candidate-list snackText=snackText refreshCurrentRoute=(route-action "refreshCurrentRoute") finished=model.challenges.finished challenge_id=model.challenges.challenge_id employer_id=model.challenges.employer_id candidates=model.candidates}}
   {{#if (eq model.candidates.length 0)}}
   There are no candidates added to this challenge yet.
   Please add them by clicking "New Candidate"
   {{/if}}
-  <div style="display:flex; flex-direction:column">
+  <div class="{{if model.challenges.finished "disabledContent"}}" style="display:flex; flex-direction:column">
     <p class="control">
       <a class="button create is-pulled-right"
         style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" {{action 'toggleNewCandidate'}}>
@@ -55,6 +59,13 @@
         style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
         {{action 'inviteAllCandidates' model.candidates}}>
         <span>Invite All</span>
+      </a>
+    </p>
+    <p class="control">
+      <a class="button create is-pulled-right"
+        style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)"
+        {{action 'finishChallenge' model.challenges.challenge_id}}>
+        <span>Finalize Challenge Decisions</span>
       </a>
     </p>
   </div>
@@ -80,7 +91,7 @@
         <label class="label">Description</label>
         <div class="control">
           <textarea class="textarea" value="{{model.challenge.description}}"
-            placeholder="Challenge description"></textarea>
+            placeholder="challenge description"></textarea>
         </div>
       </div>
       <div class="field">

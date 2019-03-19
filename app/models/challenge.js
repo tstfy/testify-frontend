@@ -6,5 +6,6 @@ export default DS.Model.extend({
   employer_id: DS.attr(),
   category: DS.attr(),
   description: DS.attr(),
+  finished: DS.attr(),
   repo_link: DS.attr()
 });

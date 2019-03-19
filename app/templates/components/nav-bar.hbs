@@ -83,19 +83,19 @@
       <div class="field">
         <label class="label">Title <span class="has-text-danger">*</span></label>
         <div class="control">
-          {{input class="input" type="text" id='title' placeholder="Challenge title" required=true value=title}}
+          {{input class="input" type="text" id='title' autocomplete="off" placeholder="Challenge title" required=true value=title}}
         </div>
       </div>
       <div class="field">
         <label class="label">Description <span class="has-text-danger">*</span></label>
         <div class="control">
-          {{textarea class="textarea" type="text" id='description' placeholder="Challenge description" required=true value=description}}
+          {{textarea maxlength="280" class="textarea" type="text" autocomplete="off" id='description' placeholder="Challenge description, Max Lenth 280 Chararcters" required=true value=description}}
         </div>
       </div>
       <div class="field">
         <label class="label">Type of Challenge <span class="has-text-danger">*</span></label>
         <div class="control">
-          {{input class="input" type="text" list="types" value=category}}
+          {{input class="input" type="text" list="types" autocomplete="off" placeholder="Eg. Data Structures and Algorithms" value=category}}
           <datalist id="types">
             <option value="Data Structures and Algorithms">Data Structures and Algorithms</option>
             <option value="Design Thinking">Design Thinking</option>

@@ -1,6 +1,16 @@
 .accept {
   background-color: #99ff99;
 }
+
+.disabledChallenge {
+  opacity: 0.4;
+}
+
+.disabledContent {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .table tr.accept:hover {
   background-color: #80ff80;
 }

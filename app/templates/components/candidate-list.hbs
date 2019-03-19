@@ -1,4 +1,4 @@
-<table class="table is-fullwidth is-hoverable is-centered is-narrow">
+<table class="table is-fullwidth is-hoverable is-centered is-narrow {{if finished "disabledContent"}}">
   <thead>
     <tr>
       <th>Full Name</th>
@@ -93,17 +93,19 @@
         {{#panel.body}}
         <div class="animated fadeIn">
           {{#each candidate.gitlogs.data as |log|}}
+    <tr>
       <td>
         {{log.attributes.commit_date}}
       </td>
       <td>
         {{log.attributes.message}}
       </td>
-      {{/each}}
-      </div>
-      {{/panel.body}}
-      {{/cp-panel}}
-      </td>
+    </tr>
+    {{/each}}
+    </div>
+    {{/panel.body}}
+    {{/cp-panel}}
+    </td>
     </tr>
     {{/each}}
   </tbody>

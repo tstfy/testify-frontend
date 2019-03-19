@@ -151,6 +151,38 @@ export default Controller.extend({
           console.log("Invite All Candidate Error: ", JSON.parse(error));
         });
     },
+    finishChallenge(challenge_id) {
+      this._super(...arguments);
+      this.set("isLoading", false);
+      $.ajax({
+        url: config.APP.baseURL + `/challenges/${challenge_id}`,
+        type: "PUT",
+        crossDomain: true,
+        contentType: "application/json;charset=UTF-8",
+        data: JSON.stringify({
+          finished: true
+        })
+      })
+        .then(resp => {
+          run(() => {
+            // begin loop
+            // Code that results in jobs being scheduled goes here
+            console.log("Finish Challenge Response: ", resp);
+            this.send("snackText", "Finished Challenge");
+            this.transitionToRoute(
+              "home",
+              this.session.data.authenticated.user.employer_id
+            );
+          }); // end loop, jobs are flushed and executed
+        })
+        .catch(error => {
+          // handle errors here
+          this.set("isLoading", false);
+          this.send("clearFields");
+          this.set("error", JSON.parse(error));
+          console.log("Refresh Candidate Error: ", JSON.parse(error));
+        });
+    },
     refreshModel: function(challenge_id) {
       this._super(...arguments);
       $.ajax({
