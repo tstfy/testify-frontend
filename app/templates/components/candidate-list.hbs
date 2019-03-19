@@ -72,51 +72,41 @@
         </p>
         {{else}}
         <p class="control" data-toggle="collapse" data-target="#progression-{{candidate.candidate_id}}"
-          id="view-{{candidate.candidate_id}}">
+          {{action 'getProgression' challenge_id candidate.candidate_id}}>
           <a class="button create is-pulled-right"
             style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
-            <span>View Progress</span>
+            <span id="view-{{candidate.candidate_id}}">View Progress</span>
+            <div class="lds-ellipsis" id="loading-{{candidate.candidate_id}}" style="display:none;">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </a>
         </p>
         {{/if}}
       </td>
     </tr>
-
-    <tr class="clickable" data-toggle="collapse" id="68" data-target=".68collapsed">
-      <td>visible row</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="collapse out budgets 68collapsed">
-      <td>hidden row</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="collapse out budgets 68collapsed">
-      <td>hidden row</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="collapse out budgets 68collapsed">
-      <td>hidden row</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="collapse out budgets 68collapsed">
-      <td>hidden row</td>
-      <td>&nbsp;</td>
-    </tr>
-
-    <tr class="clickable" id="69" data-toggle="collapse" data-target=".69collapsed">
-      <td>visible row</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="collapse out budgets 69collapsed">
-      <td>hidden row</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="collapse out budgets 69collapsed">
-      <td>hidden row</td>
-      <td>&nbsp;</td>
+    <tr class="progression-{{candidate.candidate_id}}" style="display:none;">
+      <td colspan="5">
+        {{#cp-panel name=candidate.candidate_id as |panel|}}
+        {{#panel.body}}
+        <div class="animated fadeIn">
+          {{#each candidate.gitlogs.data as |log|}}
+      <td>
+        {{log.attributes.commit_date}}
+      </td>
+      <td>
+        {{log.attributes.message}}
+      </td>
+      {{/each}}
+      </div>
+      {{/panel.body}}
+      {{/cp-panel}}
+      </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
-
-<div id="snackbar">{{snackText}}</div>
+<div id="snackbar">{{snackText}}
+</div>
