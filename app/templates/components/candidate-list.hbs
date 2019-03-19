@@ -16,12 +16,18 @@
       <td>{{candidate.f_name}} {{candidate.l_name}}</td>
       <td>{{candidate.email}}</td>
       <td>
+        {{#if (eq candidate.repo_link "")}}
+        <a id="repo" class="button is-primary" disabled>
+          Copy
+        </a>
+        {{else}}
         <a id="repo" class="button is-primary" {{action "copyToClipboard" candidate.repo_link}}>
           {{#ember-tooltip duration=10000 event='click' hideOn='mouseleave'}}
           Copied!
           {{/ember-tooltip}}
           Copy
         </a>
+        {{/if}}
       </td>
       <td>
         <div class="select">
@@ -65,14 +71,49 @@
           </a>
         </p>
         {{else}}
-        <p class="control" id="invite-{{candidate}}">
+        <p class="control" data-toggle="collapse" data-target="#progression-{{candidate.candidate_id}}"
+          id="view-{{candidate.candidate_id}}">
           <a class="button create is-pulled-right"
-            style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)" disabled>
-            <span>Invite</span>
+            style="border-color: transparent; box-shadow: 0 10px 10px 0 rgba(0,0,0,.1)">
+            <span>View Progress</span>
           </a>
         </p>
         {{/if}}
       </td>
+    </tr>
+
+    <tr class="clickable" data-toggle="collapse" id="68" data-target=".68collapsed">
+      <td>visible row</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="collapse out budgets 68collapsed">
+      <td>hidden row</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="collapse out budgets 68collapsed">
+      <td>hidden row</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="collapse out budgets 68collapsed">
+      <td>hidden row</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="collapse out budgets 68collapsed">
+      <td>hidden row</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr class="clickable" id="69" data-toggle="collapse" data-target=".69collapsed">
+      <td>visible row</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="collapse out budgets 69collapsed">
+      <td>hidden row</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="collapse out budgets 69collapsed">
+      <td>hidden row</td>
+      <td>&nbsp;</td>
     </tr>
     {{/each}}
   </tbody>

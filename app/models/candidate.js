@@ -6,5 +6,6 @@ export default DS.Model.extend({
   f_name: DS.attr(),
   l_name: DS.attr(),
   repo_link: DS.attr("string", { defaultValue: "" }),
-  status: DS.attr("number", { defaultValue: 0 })
+  status: DS.attr("number", { defaultValue: 0 }),
+  progression: DS.attr()
 });

@@ -4,10 +4,16 @@ const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    // Add options here
     sassOptions: {
       extension: "scss"
+    },
+
+    'ember-bootstrap': {
+      'bootstrapVersion': 4,
+      'importBootstrapFont': false,
+      'importBootstrapCSS': false
     }
-    // Add options here
   });
 
   app.import("vendor/testify.css");

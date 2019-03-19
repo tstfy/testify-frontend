@@ -19,16 +19,21 @@
         $('.bar').addClass('medium');
       }
     });
+    $('#password').blur(function () {
+      $('.bar').removeClass('medium');
+      $('.bar').removeClass('weak');
+      $('.bar').removeClass('strong');
+    });
   });
 </script>
 {{nav-bar}}
-<section class="hero is-dark is-fullheight animated fadeInTop">
+<section class="hero is-dark is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered ">
       <div class="column is-4 is-offset-4 ">
         <h3 class="title">Login</h3>
         <p class="subtitle">Please login to proceed.</p>
-        <div class="box">
+        <div class="box animated fadeInTop">
           <figure class="image is-2by1">
             <img src="/images/logo_reverse.png">
           </figure>
